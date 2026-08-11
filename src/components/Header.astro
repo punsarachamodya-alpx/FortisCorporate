@@ -1,5 +1,6 @@
 ---
 import { primaryNav, FIRM } from '../lib/site';
+import LogoHorizontal from './LogoHorizontal.astro';
 
 const currentPath = Astro.url.pathname;
 
@@ -11,9 +12,8 @@ function isActive(href: string) {
 
 <header class="sticky top-0 z-50 bg-offwhite/95 backdrop-blur border-b border-navy-100">
   <nav class="container-px mx-auto max-w-content flex items-center justify-between h-20">
-    <a href="/" class="font-heading text-2xl tracking-widest text-navy" aria-label={`${FIRM.tradingName} — Home`}>
-      <!-- TODO: replace with real logo once brand assets are provided -->
-      FORTIS
+    <a href="/" class="text-navy shrink-0" aria-label={`${FIRM.tradingName} — Home`}>
+      <LogoHorizontal class="h-9 sm:h-10 w-auto" />
     </a>
 
     <button
