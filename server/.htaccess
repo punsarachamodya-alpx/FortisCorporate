@@ -1,0 +1,11 @@
+# Defence in depth: config.php only returns a PHP array and Apache executes
+# .php files rather than serving their source, but block direct access to
+# config/composer files anyway in case PHP handling is ever misconfigured.
+<FilesMatch "^(config\.php|config\.example\.php|composer\.json|composer\.lock)$">
+    Require all denied
+</FilesMatch>
+
+# vendor/ should not be browsable directly.
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>

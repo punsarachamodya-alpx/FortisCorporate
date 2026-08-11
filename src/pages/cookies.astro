@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { FIRM } from '../lib/site';
+
+const lastUpdated = 'August 2026';
+---
+
+<BaseLayout
+  title="Cookie Notice"
+  description="How Fortis Corporate Services uses cookies, including Google Analytics, on this website."
+  path="/cookies"
+>
+  <section class="bg-navy">
+    <div class="container-px mx-auto max-w-content py-16 sm:py-20">
+      <h1 class="text-4xl text-white">Cookie Notice</h1>
+      <p class="mt-3 text-navy-100">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-px mx-auto max-w-content max-w-3xl prose prose-neutral prose-headings:font-heading prose-headings:text-navy prose-a:text-bronze-600">
+      <p>
+        This Cookie Notice explains how {FIRM.legalName} uses cookies and similar technologies on this website.
+      </p>
+
+      <h2>What are cookies?</h2>
+      <p>
+        Cookies are small text files placed on your device by websites you visit. They are widely used to make websites work more efficiently and to provide reporting information.
+      </p>
+
+      <h2>Cookies we use</h2>
+      <p>
+        This website uses <strong>Google Analytics</strong> to help us understand how visitors use the Site — for example, which pages are visited most, and how visitors found us. Google Analytics uses cookies to collect anonymised or pseudonymised usage data, such as pages viewed, time spent on the Site, and general location and device information. This data is processed by Google in accordance with Google's own privacy and data policies.
+      </p>
+      <p>
+        We do not currently use cookies for advertising or cross-site tracking purposes.
+      </p>
+
+      <h2>Embedded third-party content</h2>
+      <p>
+        Some pages on this Site embed third-party content, such as our online scheduling calendar and Google Maps. These third-party providers may set their own cookies when their embedded content is loaded — this is governed by their respective privacy and cookie policies, not this notice.
+      </p>
+
+      <h2>Managing cookies</h2>
+      <p>
+        Most web browsers allow you to control cookies through their settings, including blocking or deleting cookies. Please note that disabling cookies may affect the functionality of this and other websites. You can also opt out of Google Analytics tracking using Google's{' '}
+        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Browser Add-on</a>.
+      </p>
+
+      <h2>Changes to this notice</h2>
+      <p>
+        We may update this Cookie Notice from time to time to reflect changes in the cookies and technologies we use. Please check back periodically.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this Cookie Notice can be directed to <a href={`mailto:${FIRM.email}`}>{FIRM.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

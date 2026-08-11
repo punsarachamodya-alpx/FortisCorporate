@@ -1,0 +1,17 @@
+---
+import { GA4_MEASUREMENT_ID } from '../lib/site';
+// TODO: replace GA4_MEASUREMENT_ID in src/lib/site.ts with the real GA4
+// measurement ID (format G-XXXXXXXXXX) supplied by the client, then this
+// snippet will start sending real data. Left in place (inert placeholder ID)
+// so the integration only needs a one-line change later.
+---
+
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}></script>
+<script define:vars={{ GA4_MEASUREMENT_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', GA4_MEASUREMENT_ID);
+</script>

@@ -1,0 +1,52 @@
+{
+  "deadlines": [
+    {
+      "obligation": "Annual Return filing (Registrar of Companies)",
+      "appliesTo": "Companies registered under the Companies Act No. 07 of 2007",
+      "indicativeTiming": "Generally due annually, with the filing window commonly linked to the company's AGM or financial year end",
+      "notes": "Exact timing depends on your company's financial year end and AGM date — confirm with us or the Registrar of Companies."
+    },
+    {
+      "obligation": "EPF (Employees' Provident Fund) contribution",
+      "appliesTo": "Employers with EPF-registered employees",
+      "indicativeTiming": "Monthly, typically within the first half of the following month",
+      "notes": "Late payment can attract surcharges — confirm the exact due date for your business."
+    },
+    {
+      "obligation": "ETF (Employees' Trust Fund) contribution",
+      "appliesTo": "Employers with ETF-registered employees",
+      "indicativeTiming": "Monthly, typically alongside the EPF contribution",
+      "notes": "Confirm the exact due date applicable to your business."
+    },
+    {
+      "obligation": "APIT (Advance Personal Income Tax) deduction and remittance",
+      "appliesTo": "Employers deducting APIT from employee remuneration",
+      "indicativeTiming": "Monthly, alongside payroll processing",
+      "notes": "Applicability depends on employee remuneration levels and current Inland Revenue guidance."
+    },
+    {
+      "obligation": "VAT return filing and payment",
+      "appliesTo": "VAT-registered businesses",
+      "indicativeTiming": "Periodic — commonly monthly or quarterly depending on your VAT registration category",
+      "notes": "Filing frequency and due dates are set by the Inland Revenue Department and vary by taxpayer category."
+    },
+    {
+      "obligation": "Income tax instalment payments (self-assessment)",
+      "appliesTo": "Companies and individuals under self-assessment",
+      "indicativeTiming": "Quarterly instalments during the tax year",
+      "notes": "Instalment amounts and due dates depend on estimated tax liability for the year."
+    },
+    {
+      "obligation": "Annual income tax return",
+      "appliesTo": "Companies and individuals",
+      "indicativeTiming": "Annually, following the end of the tax year (1 April – 31 March)",
+      "notes": "Confirm the current filing deadline for your entity type with the Inland Revenue Department."
+    },
+    {
+      "obligation": "Renewal of trade/business licences and sector permits",
+      "appliesTo": "Businesses holding local authority or sector-specific licences",
+      "indicativeTiming": "Typically annual — exact timing varies by local authority and licence type",
+      "notes": "Requirements vary by municipality/local authority and by regulated sector."
+    }
+  ]
+}
