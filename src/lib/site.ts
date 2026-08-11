@@ -32,9 +32,6 @@ export const links = {
   googleMapsEmbed: `https://maps.google.com/maps?q=${encodeURIComponent(
     FIRM.address.full
   )}&t=&z=15&ie=UTF8&iwloc=&output=embed`,
-  // TODO: replace with the firm's real Calendly (or equivalent) scheduling
-  // link once a free-tier account is set up.
-  calendly: 'https://calendly.com/fortiscorporate/consultation',
 };
 
 export type NavLink = { label: string; href: string };

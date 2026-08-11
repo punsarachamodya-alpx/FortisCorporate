@@ -1,4 +1,6 @@
 ---
+import { FIRM, links } from '../lib/site';
+
 interface Props {
   heading: string;
   body?: string;
@@ -12,7 +14,7 @@ const { heading, body } = Astro.props;
     {body && <p class="mt-4 text-navy-100 max-w-xl mx-auto">{body}</p>}
     <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
       <a href="/contact" class="btn-primary">Submit an Enquiry</a>
-      <a href="/contact#book-a-consultation" class="btn-secondary-inverted">Book a Consultation</a>
+      <a href={links.tel} class="btn-secondary-inverted">Call {FIRM.phoneDisplay}</a>
     </div>
   </div>
 </section>
