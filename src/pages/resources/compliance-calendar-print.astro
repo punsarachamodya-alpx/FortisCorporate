@@ -1,0 +1,67 @@
+---
+// Print-friendly / "downloadable" version of the compliance calendar,
+// unlocked from the email-capture gate on /resources.
+// TODO: once the specific statutory dates in the compliance calendar have
+// been verified against current Sri Lankan regulatory sources (see README /
+// launch checklist), consider also generating a static PDF file for direct
+// download instead of relying on browser print-to-PDF.
+import { getCollection } from 'astro:content';
+import { FIRM } from '../../lib/site';
+
+const complianceData = await getCollection('complianceDeadlines');
+const deadlines = complianceData[0]?.data.deadlines ?? [];
+const today = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Compliance Calendar — {FIRM.tradingName}</title>
+    <link rel="stylesheet" href="/print.css" />
+  </head>
+  <body>
+    <header class="print-header">
+      <p class="wordmark">FORTIS</p>
+      <p class="tagline">{FIRM.tradingName}</p>
+    </header>
+
+    <h1>Sri Lanka Compliance Calendar</h1>
+    <p class="meta">Generated {today} · General information only, not professional advice</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Obligation</th>
+          <th>Applies to</th>
+          <th>Indicative timing</th>
+        </tr>
+      </thead>
+      <tbody>
+        {deadlines.map((item) => (
+          <tr>
+            <td>{item.obligation}</td>
+            <td>{item.appliesTo}</td>
+            <td>
+              {item.indicativeTiming}
+              {item.notes && <div class="notes">{item.notes}</div>}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <p class="disclaimer">
+      This is general information only, not professional advice, and deadlines vary by entity. Contact us to confirm what applies to your business.
+    </p>
+
+    <footer>
+      <p>{FIRM.legalName} · Company Registration No. {FIRM.registrationNo}</p>
+      <p>{FIRM.address.full} · {FIRM.phoneDisplay} · {FIRM.email}</p>
+    </footer>
+
+    <button class="no-print" onclick="window.print()">Print / Save as PDF</button>
+  </body>
+</html>

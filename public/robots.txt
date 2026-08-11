@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# TODO: confirm domain — update if fortiscorporate.com changes
+Sitemap: https://fortiscorporate.com/sitemap-index.xml

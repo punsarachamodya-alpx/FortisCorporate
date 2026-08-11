@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+server/vendor/
+
+# build output
+dist/
+.astro/
+
+# environment / secrets
+.env
+.env.*
+server/config.php
+
+# editor / OS
+.DS_Store
+*.log
+.vscode/*
+!.vscode/extensions.json
+
+# composer
+composer.phar
