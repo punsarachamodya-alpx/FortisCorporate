@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+const complianceData = await getCollection('complianceDeadlines');
+const deadlines = complianceData[0]?.data.deadlines ?? [];
+---
+
+<BaseLayout
+  title="Resources"
+  description="Guides and a compliance calendar covering key recurring statutory deadlines for Sri Lankan SMEs."
+  path="/resources"
+>
+  <section class="bg-navy">
+    <div class="container-px mx-auto max-w-content py-20 sm:py-28">
+      <p class="eyebrow">Resources</p>
+      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Guides & Compliance Calendar</h1>
+      <p class="mt-6 max-w-2xl text-navy-100">
+        Practical, general-information resources for businesses operating in Sri Lanka.
+      </p>
+    </div>
+  </section>
+
+  <!-- Guides -->
+  <section id="guides" class="section bg-offwhite">
+    <div class="container-px mx-auto max-w-content">
+      <p class="eyebrow">Guides</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">Practical guides for doing business in Sri Lanka</h2>
+
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {guides.map((guide) => (
+          <a
+            href={`/resources/guides/${guide.slug}`}
+            class="group block rounded-sm border border-navy-100 bg-white p-7 hover:border-bronze hover:shadow-md transition-all duration-150"
+          >
+            <h3 class="text-xl leading-snug group-hover:text-bronze-600">{guide.data.title}</h3>
+            <p class="mt-3 text-sm text-charcoal/80">{guide.data.description}</p>
+            <span class="mt-4 inline-block text-sm font-semibold text-bronze">Read guide →</span>
+          </a>
+        ))}
+        {guides.length === 0 && (
+          <p class="text-charcoal/70">More guides coming soon.</p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance calendar -->
+  <section id="compliance-calendar" class="section bg-white scroll-mt-24">
+    <div class="container-px mx-auto max-w-content">
+      <p class="eyebrow">Compliance Calendar</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">Key recurring statutory deadlines for Sri Lankan SMEs</h2>
+      <p class="mt-4 max-w-2xl text-charcoal/80">
+        A quick-reference overview of the kinds of recurring obligations Sri Lankan businesses commonly need to track. Every date range below is <strong>indicative only</strong>.
+      </p>
+
+      <div class="mt-10 overflow-x-auto rounded-sm border border-navy-100">
+        <table class="w-full text-sm text-left border-collapse min-w-[640px]">
+          <thead class="bg-navy text-white">
+            <tr>
+              <th class="px-5 py-3 font-medium">Obligation</th>
+              <th class="px-5 py-3 font-medium">Applies to</th>
+              <th class="px-5 py-3 font-medium">Indicative timing</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            {deadlines.map((item, i) => (
+              <tr class:list={[i % 2 === 1 ? 'bg-offwhite' : '']}>
+                <td class="px-5 py-4 align-top font-medium text-navy">{item.obligation}</td>
+                <td class="px-5 py-4 align-top text-charcoal/80">{item.appliesTo}</td>
+                <td class="px-5 py-4 align-top text-charcoal/80">
+                  {item.indicativeTiming}
+                  {item.notes && <span class="block mt-1 text-xs text-charcoal/60">{item.notes}</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-6 max-w-3xl text-sm text-charcoal/70 italic">
+        This is general information only, not professional advice, and deadlines vary by entity. Contact us to confirm what applies to your business.
+      </p>
+
+      <!-- Email-gated download -->
+      <div id="download-gate" class="mt-14 rounded-sm bg-navy p-8 sm:p-10">
+        <h3 class="text-2xl text-white">Get the printable compliance calendar</h3>
+        <p class="mt-2 text-navy-100 max-w-xl">
+          Enter your email to unlock a printable version of this compliance calendar that you can save or print for reference.
+        </p>
+
+        <form id="resource-download-form" class="mt-6 flex flex-col sm:flex-row gap-3 max-w-lg" novalidate>
+          <input type="hidden" name="form_type" value="resource-download" />
+          <input type="hidden" name="resource" value="compliance-calendar" />
+          <!-- honeypot -->
+          <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <label for="download-email" class="sr-only">Email address</label>
+          <input
+            id="download-email"
+            type="email"
+            name="email"
+            required
+            placeholder="you@company.com"
+            class="flex-1 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/50 focus:outline-none focus:ring-2 focus:ring-bronze"
+          />
+          <button type="submit" class="btn-primary whitespace-nowrap">Get the PDF</button>
+        </form>
+
+        <p id="download-status" class="mt-3 text-sm text-navy-100" role="status" aria-live="polite"></p>
+
+        <a
+          id="download-link"
+          href="/resources/compliance-calendar-print"
+          target="_blank"
+          rel="noopener"
+          class="hidden mt-4 inline-block text-sm font-semibold text-bronze hover:text-bronze-300"
+        >
+          Open the printable version →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Need help confirming what applies to your business?" body="Every business is different — talk to us about your specific compliance requirements." />
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('resource-download-form') as HTMLFormElement | null;
+  const status = document.getElementById('download-status');
+  const link = document.getElementById('download-link');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status || !link) return;
+
+    const formData = new FormData(form);
+    if ((formData.get('website') as string)?.length) return; // honeypot tripped
+
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    submitBtn.disabled = true;
+    status.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/server/send.php', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        status.textContent = "Thanks — you're all set.";
+        link.classList.remove('hidden');
+        form.classList.add('hidden');
+      } else {
+        status.textContent = result.message || 'Something went wrong. Please try again.';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      status.textContent = 'Something went wrong. Please try again, or email us directly.';
+      submitBtn.disabled = false;
+    }
+  });
+</script>

@@ -1,0 +1,57 @@
+---
+import { FIRM, links, footerLegalLinks, primaryNav, serviceCategorySlugs } from '../lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy text-navy-100">
+  <div class="container-px mx-auto max-w-content py-16 grid gap-12 md:grid-cols-4">
+    <div class="md:col-span-1">
+      <p class="font-heading text-2xl tracking-widest text-white">FORTIS</p>
+      <p class="mt-3 text-sm text-navy-200">
+        Corporate, legal, HR, accounting and compliance support for businesses and investors in Sri Lanka — under one roof.
+      </p>
+    </div>
+
+    <div>
+      <p class="eyebrow text-bronze-200">Navigate</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {primaryNav.map((item) => (
+          <li><a href={item.href} class="hover:text-bronze">{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="eyebrow text-bronze-200">Services</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {serviceCategorySlugs.map((s) => (
+          <li><a href={`/services#${s.anchor}`} class="hover:text-bronze">{s.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="eyebrow text-bronze-200">Contact</p>
+      <ul class="mt-4 space-y-2 text-sm text-navy-100">
+        <li>{FIRM.address.full}</li>
+        <li><a href={links.tel} class="hover:text-bronze">{FIRM.phoneDisplay}</a> (also WhatsApp)</li>
+        <li><a href={links.email} class="hover:text-bronze">{FIRM.email}</a></li>
+        <li class="pt-1 text-navy-200">{FIRM.officeHours}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-navy-500/40">
+    <div class="container-px mx-auto max-w-content py-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-xs text-navy-200">
+      <p>
+        &copy; {year} {FIRM.legalName}. Company Registration No. {FIRM.registrationNo}. All rights reserved.
+      </p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {footerLegalLinks.map((item) => (
+          <li><a href={item.href} class="hover:text-bronze">{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</footer>
