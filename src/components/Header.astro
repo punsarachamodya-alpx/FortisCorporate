@@ -1,0 +1,79 @@
+---
+import { primaryNav, FIRM } from '../lib/site';
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-50 bg-offwhite/95 backdrop-blur border-b border-navy-100">
+  <nav class="container-px mx-auto max-w-content flex items-center justify-between h-20">
+    <a href="/" class="font-heading text-2xl tracking-widest text-navy" aria-label={`${FIRM.tradingName} — Home`}>
+      <!-- TODO: replace with real logo once brand assets are provided -->
+      FORTIS
+    </a>
+
+    <button
+      id="nav-toggle"
+      class="md:hidden inline-flex flex-col justify-center gap-1.5 w-10 h-10"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Toggle navigation menu"
+    >
+      <span class="block h-0.5 w-6 bg-navy"></span>
+      <span class="block h-0.5 w-6 bg-navy"></span>
+      <span class="block h-0.5 w-6 bg-navy"></span>
+    </button>
+
+    <ul class="hidden md:flex items-center gap-8 font-body text-sm font-medium">
+      {primaryNav.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'hover:text-bronze',
+              isActive(item.href) ? 'text-bronze' : 'text-navy',
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="/contact" class="hidden md:inline-flex btn-primary">Submit an Enquiry</a>
+  </nav>
+
+  <ul id="mobile-nav" class="md:hidden hidden flex-col gap-1 px-6 pb-6 font-body text-sm font-medium bg-offwhite border-t border-navy-100">
+    {primaryNav.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class:list={[
+            'block py-3 hover:text-bronze',
+            isActive(item.href) ? 'text-bronze' : 'text-navy',
+          ]}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+    <li class="pt-2">
+      <a href="/contact" class="btn-primary w-full">Submit an Enquiry</a>
+    </li>
+  </ul>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex');
+  });
+</script>

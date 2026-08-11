@@ -1,0 +1,94 @@
+backend:
+  name: github
+  repo: punsarachamodya-alpx/fortiscorporate
+  branch: main
+  # Custom PHP OAuth proxy (see server/oauth/) — required because this site
+  # runs on plain Hostinger hosting rather than Netlify, so it can't use
+  # Netlify's built-in OAuth provider or git-gateway backend.
+  base_url: https://fortiscorporate.com
+  auth_endpoint: server/oauth/authorize.php
+
+# TODO: confirm domain — this file assumes fortiscorporate.com. If the
+# domain changes, update base_url above (and the GitHub OAuth App's
+# callback URL) to match.
+
+publish_mode: simple
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "services"
+    label: "Services"
+    description: "The six service category pages shown on /services. Editing sub-service names/descriptions here updates the live site on next deploy."
+    folder: "src/content/services"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Anchor (used in /services#anchor links — do not change without updating navigation)", name: "anchor", widget: "string" }
+      - { label: "Display Order", name: "order", widget: "number" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - label: "Sub-services"
+        name: "subservices"
+        widget: "list"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+
+  - name: "faq"
+    label: "FAQ"
+    description: "Questions shown on /faq. Keep answers general — no prices or turnaround times."
+    folder: "src/content/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Display Order", name: "order", widget: "number" }
+      - { label: "Answer", name: "body", widget: "markdown" }
+
+  - name: "guides"
+    label: "Guides"
+    description: "Guides shown on /resources."
+    folder: "src/content/guides"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description (used in listing card & SEO)", name: "description", widget: "text" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
+      - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "Blog Posts"
+    description: "Blog posts shown on /blog. Set Draft to false to publish."
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description (used in listing card & SEO)", name: "description", widget: "text" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Fortis Corporate Services" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: true }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "compliance_calendar"
+    label: "Compliance Calendar"
+    description: "Deadlines shown on /resources. IMPORTANT: verify any date changes against current Sri Lankan regulatory sources before saving — these are indicative, not confirmed, dates."
+    files:
+      - file: "src/content/complianceDeadlines/deadlines.json"
+        name: "deadlines"
+        label: "Compliance Deadlines"
+        fields:
+          - label: "Deadlines"
+            name: "deadlines"
+            widget: "list"
+            fields:
+              - { label: "Obligation", name: "obligation", widget: "string" }
+              - { label: "Applies To", name: "appliesTo", widget: "string" }
+              - { label: "Indicative Timing", name: "indicativeTiming", widget: "string" }
+              - { label: "Notes", name: "notes", widget: "string", required: false }

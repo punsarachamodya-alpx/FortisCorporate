@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Services"
+  description="Corporate & company secretarial, commercial contracts, HR & employment, notarial & statutory documentation, accounting & tax, and legal advisory services in Sri Lanka."
+  path="/services"
+>
+  <section class="bg-navy">
+    <div class="container-px mx-auto max-w-content py-20 sm:py-28">
+      <p class="eyebrow">What we do</p>
+      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Our Services</h1>
+      <p class="mt-6 max-w-2xl text-navy-100">
+        Six integrated service areas covering corporate, legal, HR, accounting and compliance needs. Every engagement is quoted individually — get in touch for a proposal tailored to your requirements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Jump nav -->
+  <nav aria-label="Service categories" class="sticky top-20 z-40 bg-white border-b border-navy-100">
+    <ul class="container-px mx-auto max-w-content flex gap-6 overflow-x-auto py-4 text-sm font-medium whitespace-nowrap">
+      {services.map((service) => (
+        <li>
+          <a href={`#${service.data.anchor}`} class="text-navy hover:text-bronze">{service.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  {services.map((service, index) => (
+    <section id={service.data.anchor} class:list={['section scroll-mt-36', index % 2 === 0 ? 'bg-offwhite' : 'bg-white']}>
+      <div class="container-px mx-auto max-w-content">
+        <p class="eyebrow">{`0${index + 1}`}</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">{service.data.title}</h2>
+        <p class="mt-4 max-w-2xl text-charcoal/80">{service.data.summary}</p>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+          {service.data.subservices.map((sub) => (
+            <div class="rounded-sm border border-navy-100 bg-white p-6">
+              <h3 class="text-lg">{sub.name}</h3>
+              <p class="mt-2 text-sm text-charcoal/80">{sub.description}</p>
+              <a href="/contact" class="mt-4 inline-block text-sm font-semibold text-bronze hover:text-bronze-600">
+                Request a Quote →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand heading="Not sure which service you need?" body="Tell us about your business and we'll point you in the right direction." />
+</BaseLayout>
