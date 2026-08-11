@@ -1,5 +1,6 @@
 ---
 import { FIRM, links, footerLegalLinks, primaryNav, serviceCategorySlugs } from '../lib/site';
+import LogoHorizontal from './LogoHorizontal.astro';
 
 const year = new Date().getFullYear();
 ---
@@ -7,8 +8,8 @@ const year = new Date().getFullYear();
 <footer class="bg-navy text-navy-100">
   <div class="container-px mx-auto max-w-content py-16 grid gap-12 md:grid-cols-4">
     <div class="md:col-span-1">
-      <p class="font-heading text-2xl tracking-widest text-white">FORTIS</p>
-      <p class="mt-3 text-sm text-navy-200">
+      <LogoHorizontal class="h-8 w-auto text-white" />
+      <p class="mt-4 text-sm text-navy-200">
         Corporate, legal, HR, accounting and compliance support for businesses and investors in Sri Lanka — under one roof.
       </p>
     </div>
