@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import StatCounter from '../components/StatCounter.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
+import { FIRM, links } from '../lib/site';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 
@@ -67,7 +68,7 @@ const whoWeServe = [
       </p>
       <div class="mt-10 flex flex-col sm:flex-row gap-4">
         <a href="/contact" class="btn-primary">Submit an Enquiry</a>
-        <a href="/contact#book-a-consultation" class="btn-secondary-inverted">Book a Consultation</a>
+        <a href={links.tel} class="btn-secondary-inverted">Call {FIRM.phoneDisplay}</a>
       </div>
     </div>
   </section>
@@ -139,6 +140,6 @@ const whoWeServe = [
 
   <CtaBand
     heading="Ready to discuss your requirements?"
-    body="Tell us what you need and we'll get back to you — or book a consultation directly through our calendar."
+    body="Tell us what you need and we'll get back to you shortly."
   />
 </BaseLayout>

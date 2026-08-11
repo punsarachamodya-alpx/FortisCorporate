@@ -87,7 +87,6 @@ Because this site runs on plain Hostinger hosting (not Netlify), it can't use Ne
 
 - **Domain**: `fortiscorporate.com` is used as a placeholder throughout the codebase (see `TODO: confirm domain` comments in `astro.config.mjs` and `src/lib/site.ts`). Update `SITE_URL` in `src/lib/site.ts` once the real domain is confirmed.
 - **Compliance calendar dates**: the indicative deadlines in `src/content/complianceDeadlines/deadlines.json` (and shown on `/resources`) have **not** been verified against current Sri Lankan regulatory sources. Verify before publishing.
-- **Calendly link**: `links.calendly` in `src/lib/site.ts` is a placeholder — replace with the firm's real scheduling link.
 - **GA4 measurement ID**: `GA4_MEASUREMENT_ID` in `src/lib/site.ts` is a placeholder (`G-XXXXXXXXXX`) — replace with the real ID once supplied.
 - **Logo**: the real Fortis logo is in use (vectorised from `Logo Design.pdf`, design by Akila M.) — see `src/components/LogoMark.astro` / `LogoHorizontal.astro`, `public/favicon.svg` and `public/og-default.svg`. If the firm supplies an updated/refined logo file later, regenerate these the same way (vector-trace the artwork, don't rasterize it).
 - **OG share image**: `public/og-default.svg` is an SVG placeholder; some platforms (Facebook, LinkedIn) don't render SVG `og:image` tags reliably — replace with a real PNG/JPG once brand assets exist.
