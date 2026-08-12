@@ -1,7 +1,8 @@
 ---
-import { FIRM, links, footerLegalLinks, primaryNav, serviceCategorySlugs } from '../lib/site';
+import { footerLegalLinks, primaryNav, serviceCategorySlugs, getFirmSettings } from '../lib/site';
 import LogoHorizontal from './LogoHorizontal.astro';
 
+const { FIRM, links } = await getFirmSettings();
 const year = new Date().getFullYear();
 ---
 
@@ -10,7 +11,7 @@ const year = new Date().getFullYear();
     <div class="md:col-span-1">
       <LogoHorizontal class="h-8 w-auto text-white" />
       <p class="mt-4 text-sm text-navy-200">
-        Corporate, legal, HR, accounting and compliance support for businesses and investors in Sri Lanka — under one roof.
+        {FIRM.footerTagline}
       </p>
     </div>
 

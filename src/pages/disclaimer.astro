@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { FIRM } from '../lib/site';
+import { getEntry } from 'astro:content';
 
-const lastUpdated = 'August 2026';
+const entry = await getEntry('legalPages', 'disclaimer');
+const { Content } = await entry.render();
 ---
 
 <BaseLayout
@@ -12,37 +13,14 @@ const lastUpdated = 'August 2026';
 >
   <section class="bg-navy">
     <div class="container-px mx-auto max-w-content py-16 sm:py-20">
-      <h1 class="text-4xl text-white">Disclaimer</h1>
-      <p class="mt-3 text-navy-100">Last updated: {lastUpdated}</p>
+      <h1 class="text-4xl text-white">{entry.data.title}</h1>
+      <p class="mt-3 text-navy-100">Last updated: {entry.data.lastUpdated}</p>
     </div>
   </section>
 
   <section class="section bg-white">
     <div class="container-px mx-auto max-w-content max-w-3xl prose prose-neutral prose-headings:font-heading prose-headings:text-navy prose-a:text-bronze-600">
-      <h2>General information only</h2>
-      <p>
-        The content on this website — including service descriptions, guides, the compliance calendar, FAQ answers and any other material — is provided by {FIRM.legalName} for general informational purposes only. It does not constitute formal legal, tax, accounting, HR or other professional advice, and should not be relied upon as such.
-      </p>
-
-      <h2>No client relationship</h2>
-      <p>
-        Viewing this website, submitting an enquiry, downloading a resource, or otherwise interacting with this Site does not create a client relationship, engagement or retainer between you and {FIRM.legalName}. A formal client relationship is only established once we have agreed on the scope of services in writing, following direct engagement with our team.
-      </p>
-
-      <h2>No guarantee of accuracy or currency</h2>
-      <p>
-        While we make reasonable efforts to keep information on this website accurate and up to date, laws, regulations and statutory requirements in Sri Lanka change over time, and content may not reflect the most current developments. In particular, the compliance calendar on our Resources page sets out indicative timeframes only, and specific deadlines vary by entity type, sector and individual circumstances.
-      </p>
-
-      <h2>Seek specific advice</h2>
-      <p>
-        Before taking or refraining from taking any action based on content on this Site, please contact us to discuss your specific circumstances. We accept no responsibility for any loss which may arise from reliance on information contained on this website without first obtaining specific professional advice.
-      </p>
-
-      <h2>Contact</h2>
-      <p>
-        If you have questions about this Disclaimer, please contact us at <a href={`mailto:${FIRM.email}`}>{FIRM.email}</a>.
-      </p>
+      <Content />
     </div>
   </section>
 </BaseLayout>

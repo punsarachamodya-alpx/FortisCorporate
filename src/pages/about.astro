@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+
+const about = (await getCollection('aboutContent'))[0].data;
 ---
 
 <BaseLayout
@@ -10,28 +13,16 @@ import CtaBand from '../components/CtaBand.astro';
 >
   <section class="bg-navy">
     <div class="container-px mx-auto max-w-content py-20 sm:py-28">
-      <p class="eyebrow">About Fortis</p>
-      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Professionalism, accuracy and practical advice</h1>
+      <p class="eyebrow">{about.heroEyebrow}</p>
+      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">{about.heroHeading}</h1>
     </div>
   </section>
 
   <section class="section bg-white">
     <div class="container-px mx-auto max-w-content max-w-3xl">
-      <p class="text-lg leading-relaxed text-charcoal/90 reveal">
-        <strong class="text-navy">Fortis Corporate Services (Pvt) Ltd</strong> is a professional firm providing corporate, legal, HR, accounting and related business services to clients in Sri Lanka and overseas.
-      </p>
-
-      <p class="mt-6 leading-relaxed text-charcoal/90 reveal">
-        Our team comprises experienced legal professionals with a strong legal heritage, together with business professionals with practical experience in corporate and commercial matters. This combination allows us to approach each matter with both <strong class="text-navy">legal knowledge</strong> and a clear understanding of the <strong class="text-navy">commercial considerations</strong> involved.
-      </p>
-
-      <p class="mt-6 leading-relaxed text-charcoal/90 reveal">
-        We handle matters of varying size and complexity, with a focus on <strong class="text-navy">professionalism, accuracy, confidentiality and timely delivery</strong>. We understand the importance of meeting deadlines and providing clients with practical, well-considered solutions, particularly where matters involve significant business or commercial value.
-      </p>
-
-      <p class="mt-6 leading-relaxed text-charcoal/90 reveal">
-        Our objective is to build <strong class="text-navy">long-term professional relationships</strong> with our clients by providing dependable advice and support tailored to their individual requirements.
-      </p>
+      {about.paragraphs.map((paragraph, i) => (
+        <p class:list={['leading-relaxed text-charcoal/90 reveal', i === 0 ? 'text-lg' : 'mt-6']} set:html={paragraph} />
+      ))}
     </div>
   </section>
 
@@ -39,24 +30,18 @@ import CtaBand from '../components/CtaBand.astro';
 
   <section class="section bg-offwhite">
     <div class="container-px mx-auto max-w-content">
-      <p class="eyebrow">Our approach</p>
-      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">30+ years of combined experience, applied practically</h2>
+      <p class="eyebrow">{about.statsEyebrow}</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">{about.statsHeading}</h2>
       <div class="mt-12 grid sm:grid-cols-3 gap-8">
-        <div class="rounded-sm bg-white border border-navy-100 p-7 reveal" data-reveal-delay="0">
-          <p class="font-heading text-3xl text-bronze">30+</p>
-          <p class="mt-2 text-sm text-charcoal/80">Years of combined professional experience across our team</p>
-        </div>
-        <div class="rounded-sm bg-white border border-navy-100 p-7 reveal" data-reveal-delay="90">
-          <p class="font-heading text-3xl text-bronze">30+</p>
-          <p class="mt-2 text-sm text-charcoal/80">Companies incorporated for clients to date</p>
-        </div>
-        <div class="rounded-sm bg-white border border-navy-100 p-7 reveal" data-reveal-delay="180">
-          <p class="font-heading text-3xl text-bronze">6</p>
-          <p class="mt-2 text-sm text-charcoal/80">Integrated service areas under one roof</p>
-        </div>
+        {about.stats.map((stat, i) => (
+          <div class="rounded-sm bg-white border border-navy-100 p-7 reveal" data-reveal-delay={i * 90}>
+            <p class="font-heading text-3xl text-bronze">{stat.value}</p>
+            <p class="mt-2 text-sm text-charcoal/80">{stat.label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <CtaBand heading="Want to know more about how we work?" body="Get in touch and we'll be glad to talk through your requirements." />
+  <CtaBand heading={about.ctaHeading} body={about.ctaBody} />
 </BaseLayout>

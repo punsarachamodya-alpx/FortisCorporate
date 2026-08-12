@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { FIRM, links, serviceCategorySlugs } from '../lib/site';
+import { serviceCategorySlugs, getFirmSettings } from '../lib/site';
+import { getCollection } from 'astro:content';
+
+const { FIRM, links } = await getFirmSettings();
+const c = (await getCollection('contactContent'))[0].data;
 ---
 
 <BaseLayout
@@ -10,15 +14,15 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
 >
   <section class="bg-navy">
     <div class="container-px mx-auto max-w-content py-20 sm:py-28">
-      <p class="eyebrow">Get in touch</p>
-      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Let's talk about your requirements</h1>
+      <p class="eyebrow">{c.heroEyebrow}</p>
+      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">{c.heroHeading}</h1>
       <p class="mt-6 max-w-2xl text-navy-100">
-        Submit an enquiry below, or message us directly on WhatsApp.
+        {c.heroSubheading}
       </p>
 
       <!-- Prominent click-to-WhatsApp, especially useful on mobile -->
       <a href={links.whatsapp} target="_blank" rel="noopener" class="mt-8 inline-flex btn-primary">
-        Message on WhatsApp
+        {c.whatsappButtonLabel}
       </a>
     </div>
   </section>
@@ -27,9 +31,9 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
     <div class="container-px mx-auto max-w-content grid lg:grid-cols-5 gap-14">
       <!-- Enquiry form -->
       <div class="lg:col-span-3 reveal">
-        <h2 class="text-2xl sm:text-3xl">Submit an Enquiry</h2>
+        <h2 class="text-2xl sm:text-3xl">{c.formHeading}</h2>
         <p class="mt-3 text-charcoal/80">
-          Fill in the form and we'll get back to you as soon as possible. Fields marked * are required.
+          {c.formIntro}
         </p>
 
         <form id="enquiry-form" class="mt-8 grid sm:grid-cols-2 gap-5" novalidate>

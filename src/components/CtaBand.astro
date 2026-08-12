@@ -1,11 +1,12 @@
 ---
-import { links } from '../lib/site';
+import { getFirmSettings } from '../lib/site';
 
 interface Props {
   heading: string;
   body?: string;
 }
 const { heading, body } = Astro.props;
+const { links } = await getFirmSettings();
 ---
 
 <section class="bg-navy">
