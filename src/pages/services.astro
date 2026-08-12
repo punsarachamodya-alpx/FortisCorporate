@@ -16,7 +16,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
       <p class="eyebrow">What we do</p>
       <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Our Services</h1>
       <p class="mt-6 max-w-2xl text-navy-100">
-        Six integrated service areas covering corporate, legal, HR, accounting and compliance needs. Every engagement is quoted individually — get in touch for a proposal tailored to your requirements.
+        Six integrated service areas covering corporate, legal, HR, accounting and compliance needs. Select a category below to see what's included — every engagement is quoted individually, so get in touch for a proposal tailored to your requirements.
       </p>
     </div>
   </section>
@@ -26,33 +26,196 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
     <ul class="container-px mx-auto max-w-content flex gap-6 overflow-x-auto py-4 text-sm font-medium whitespace-nowrap">
       {services.map((service) => (
         <li>
-          <a href={`#${service.data.anchor}`} class="text-navy hover:text-bronze">{service.data.title}</a>
+          <a href={`#${service.data.anchor}`} class="jump-link text-navy hover:text-bronze" data-anchor={service.data.anchor}>{service.data.title}</a>
         </li>
       ))}
     </ul>
   </nav>
 
-  {services.map((service, index) => (
-    <section id={service.data.anchor} class:list={['section scroll-mt-36', index % 2 === 0 ? 'bg-offwhite' : 'bg-white']}>
-      <div class="container-px mx-auto max-w-content">
-        <p class="eyebrow">{`0${index + 1}`}</p>
-        <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">{service.data.title}</h2>
-        <p class="mt-4 max-w-2xl text-charcoal/80">{service.data.summary}</p>
+  <section class="bg-offwhite">
+    <div class="container-px mx-auto max-w-content py-6 sm:py-10">
+      <div class="accordion divide-y divide-navy-100 border-t border-b border-navy-100 bg-white rounded-sm">
+        {services.map((service, index) => (
+          <div
+            id={service.data.anchor}
+            class="accordion-item scroll-mt-36 reveal"
+            data-reveal-delay={index * 40}
+          >
+            <button
+              type="button"
+              class="accordion-trigger w-full flex items-center justify-between gap-6 px-6 sm:px-8 py-7 sm:py-8 text-left"
+              aria-expanded="false"
+              aria-controls={`panel-${service.data.anchor}`}
+            >
+              <span class="flex items-baseline gap-4 sm:gap-6 min-w-0">
+                <span class="font-heading text-xl sm:text-2xl text-bronze shrink-0">{`0${index + 1}`}</span>
+                <span class="text-xl sm:text-3xl text-navy leading-snug truncate sm:whitespace-normal">{service.data.title}</span>
+              </span>
+              <span class="accordion-icon relative shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-navy-200 flex items-center justify-center">
+                <span class="accordion-icon-h absolute w-3.5 h-px bg-navy"></span>
+                <span class="accordion-icon-v absolute w-px h-3.5 bg-navy"></span>
+              </span>
+            </button>
 
-        <div class="mt-10 grid md:grid-cols-2 gap-6">
-          {service.data.subservices.map((sub) => (
-            <div class="rounded-sm border border-navy-100 bg-white p-6">
-              <h3 class="text-lg">{sub.name}</h3>
-              <p class="mt-2 text-sm text-charcoal/80">{sub.description}</p>
-              <a href="/contact" class="mt-4 inline-block text-sm font-semibold text-bronze hover:text-bronze-600">
-                Request a Quote →
-              </a>
+            <div class="accordion-panel" id={`panel-${service.data.anchor}`} role="region">
+              <div class="px-6 sm:px-8 pb-10">
+                <p class="max-w-2xl text-charcoal/80">{service.data.summary}</p>
+
+                <div class="mt-8 grid md:grid-cols-2 gap-6">
+                  {service.data.subservices.map((sub) => (
+                    <div class="rounded-sm border border-navy-100 bg-offwhite p-6">
+                      <h3 class="text-lg">{sub.name}</h3>
+                      <p class="mt-2 text-sm text-charcoal/80">{sub.description}</p>
+                      <a href="/contact" class="mt-4 inline-block text-sm font-semibold text-bronze hover:text-bronze-600">
+                        Request a Quote →
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
-  ))}
+    </div>
+  </section>
 
   <CtaBand heading="Not sure which service you need?" body="Tell us about your business and we'll point you in the right direction." />
 </BaseLayout>
+
+<style>
+  .accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .accordion-item.is-open .accordion-panel {
+    /* max-height is set inline by JS to the panel's measured height */
+  }
+
+  .accordion-trigger {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .accordion-trigger:hover {
+    background-color: rgba(11, 31, 58, 0.03);
+  }
+
+  .accordion-icon-v {
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease;
+  }
+
+  .accordion-item.is-open .accordion-icon {
+    background: #0b1f3a;
+    border-color: #0b1f3a;
+  }
+
+  .accordion-item.is-open .accordion-icon-h,
+  .accordion-item.is-open .accordion-icon-v {
+    background: #f7f7f8;
+  }
+
+  .accordion-item.is-open .accordion-icon-v {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll<HTMLElement>('.accordion-item');
+
+  function openItem(item: HTMLElement) {
+    const trigger = item.querySelector<HTMLButtonElement>('.accordion-trigger');
+    const panel = item.querySelector<HTMLElement>('.accordion-panel');
+    if (!trigger || !panel) return;
+    item.classList.add('is-open');
+    trigger.setAttribute('aria-expanded', 'true');
+    panel.style.maxHeight = `${panel.scrollHeight}px`;
+  }
+
+  function closeItem(item: HTMLElement) {
+    const trigger = item.querySelector<HTMLButtonElement>('.accordion-trigger');
+    const panel = item.querySelector<HTMLElement>('.accordion-panel');
+    if (!trigger || !panel) return;
+    item.classList.remove('is-open');
+    trigger.setAttribute('aria-expanded', 'false');
+    panel.style.maxHeight = '0px';
+  }
+
+  // Sticky header (h-20 = 80px) + sticky jump-nav (~64px) + a little breathing room.
+  const STICKY_OFFSET = 160;
+
+  // Collapsing the previously-open item shifts the whole page's layout
+  // height while the accordion animates, which can otherwise leave the
+  // viewport stranded somewhere unrelated (e.g. down at the footer) once
+  // the shift settles. Wait for the newly-opened panel's transition to
+  // finish, then smoothly settle the clicked item under the sticky bars.
+  function settleScroll(item: HTMLElement) {
+    const rect = item.getBoundingClientRect();
+    const target = window.scrollY + rect.top - STICKY_OFFSET;
+    window.scrollTo({ top: Math.max(target, 0), behavior: 'smooth' });
+  }
+
+  items.forEach((item) => {
+    const trigger = item.querySelector<HTMLButtonElement>('.accordion-trigger');
+    const panel = item.querySelector<HTMLElement>('.accordion-panel');
+    trigger?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+      items.forEach((other) => {
+        if (other !== item) closeItem(other);
+      });
+      if (isOpen) {
+        closeItem(item);
+      } else {
+        openItem(item);
+        let settled = false;
+        const onSettle = () => {
+          if (settled) return;
+          settled = true;
+          settleScroll(item);
+        };
+        panel?.addEventListener('transitionend', onSettle, { once: true });
+        setTimeout(onSettle, 480); // fallback in case transitionend doesn't fire
+      }
+    });
+  });
+
+  function openFromHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (target && target.classList.contains('accordion-item')) {
+      items.forEach((other) => {
+        if (other !== target) closeItem(other);
+      });
+      openItem(target);
+    }
+  }
+
+  // Keep expanded panel height correct if the viewport is resized while open
+  // (e.g. text reflow on orientation change).
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      items.forEach((item) => {
+        if (item.classList.contains('is-open')) {
+          const panel = item.querySelector<HTMLElement>('.accordion-panel');
+          if (panel) panel.style.maxHeight = `${panel.scrollHeight}px`;
+        }
+      });
+    }, 150);
+  });
+
+  window.addEventListener('hashchange', openFromHash);
+
+  if (window.location.hash) {
+    openFromHash();
+  } else if (items.length) {
+    openItem(items[0]);
+  }
+</script>

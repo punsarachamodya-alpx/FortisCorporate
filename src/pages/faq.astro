@@ -36,7 +36,7 @@ const jsonLd = {
         {faqs.map((entry, i) => {
           const { Content } = rendered[i];
           return (
-            <details class="group py-6" name="faq">
+            <details class="group py-6 reveal" data-reveal-delay={(i % 5) * 60} name="faq">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
                 <span class="text-lg text-navy font-medium">{entry.data.question}</span>
                 <span class="shrink-0 text-bronze text-2xl leading-none group-open:rotate-45 transition-transform">+</span>

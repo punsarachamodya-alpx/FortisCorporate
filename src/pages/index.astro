@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import StatCounter from '../components/StatCounter.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
-import { FIRM, links } from '../lib/site';
+import { links } from '../lib/site';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 
@@ -68,7 +68,7 @@ const whoWeServe = [
       </p>
       <div class="mt-10 flex flex-col sm:flex-row gap-4">
         <a href="/contact" class="btn-primary">Submit an Enquiry</a>
-        <a href={links.tel} class="btn-secondary-inverted">Call {FIRM.phoneDisplay}</a>
+        <a href={links.whatsapp} target="_blank" rel="noopener" class="btn-secondary-inverted">Message on WhatsApp</a>
       </div>
     </div>
   </section>
@@ -77,7 +77,7 @@ const whoWeServe = [
   <section class="bg-navy-700">
     <div class="container-px mx-auto max-w-content py-14 grid grid-cols-1 sm:grid-cols-3 gap-10">
       <StatCounter value={30} suffix="+" label="Years combined professional experience" />
-      <StatCounter value={20} suffix="+" label="Companies incorporated" />
+      <StatCounter value={30} suffix="+" label="Companies incorporated" />
       <StatCounter value={6} label="Integrated service areas" />
     </div>
   </section>
@@ -85,13 +85,14 @@ const whoWeServe = [
   <!-- Service teaser -->
   <section class="section bg-offwhite">
     <div class="container-px mx-auto max-w-content">
-      <p class="eyebrow">What we do</p>
-      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">Six integrated service areas, one point of contact</h2>
+      <p class="eyebrow reveal">What we do</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl reveal">Six integrated service areas, one point of contact</h2>
       <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service) => (
+        {services.map((service, i) => (
           <a
             href={`/services#${service.data.anchor}`}
-            class="group block rounded-sm border border-navy-100 bg-white p-7 hover:border-bronze hover:shadow-md transition-all duration-150"
+            class="group block rounded-sm border border-navy-100 bg-white p-7 hover:border-bronze hover:shadow-md transition-all duration-150 reveal"
+            data-reveal-delay={(i % 3) * 90}
           >
             <h3 class="text-xl leading-snug group-hover:text-bronze-600">{service.data.title}</h3>
             <p class="mt-3 text-sm text-charcoal/80">{service.data.summary}</p>
@@ -105,11 +106,11 @@ const whoWeServe = [
   <!-- Why Fortis -->
   <section class="section bg-white">
     <div class="container-px mx-auto max-w-content">
-      <p class="eyebrow">Why Fortis</p>
-      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">A different kind of corporate services partner</h2>
+      <p class="eyebrow reveal">Why Fortis</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl reveal">A different kind of corporate services partner</h2>
       <div class="mt-12 grid md:grid-cols-3 gap-10">
-        {whyFortis.map((item) => (
-          <div>
+        {whyFortis.map((item, i) => (
+          <div class="reveal" data-reveal-delay={i * 100}>
             <div class="h-1 w-10 bg-bronze mb-5"></div>
             <h3 class="text-xl">{item.title}</h3>
             <p class="mt-3 text-sm text-charcoal/80">{item.body}</p>
@@ -122,11 +123,11 @@ const whoWeServe = [
   <!-- Who we serve -->
   <section class="section bg-offwhite">
     <div class="container-px mx-auto max-w-content">
-      <p class="eyebrow">Who we serve</p>
-      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">Built for businesses at every stage</h2>
+      <p class="eyebrow reveal">Who we serve</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl reveal">Built for businesses at every stage</h2>
       <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
-        {whoWeServe.map((item) => (
-          <div class="border-l-2 border-bronze pl-5">
+        {whoWeServe.map((item, i) => (
+          <div class="border-l-2 border-bronze pl-5 reveal" data-reveal-delay={(i % 3) * 80}>
             <h3 class="text-base font-semibold text-navy">{item.group}</h3>
             <p class="mt-1 text-sm text-charcoal/80">{item.line}</p>
           </div>
