@@ -1,67 +1,11 @@
 ---
-// Site-wide interaction layer: a custom hover cursor, scroll-triggered
-// reveal animations, and a subtle magnetic pull on primary/secondary
-// buttons. Desktop-only (fine pointer) and skipped entirely under
-// prefers-reduced-motion so it never fights assistive tech or trackpads.
+// Site-wide interaction layer: scroll-triggered reveal animations and a
+// subtle magnetic pull on primary/secondary buttons. Desktop-only magnetic
+// effect (fine pointer) and skipped entirely under prefers-reduced-motion
+// so it never fights assistive tech or trackpads.
 ---
 
-<div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
-<div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
-
 <style>
-  .cursor-dot,
-  .cursor-ring {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 70;
-    pointer-events: none;
-    border-radius: 9999px;
-    will-change: transform, opacity, width, height;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .cursor-dot {
-    width: 6px;
-    height: 6px;
-    margin: -3px 0 0 -3px;
-    background: #b08d57;
-  }
-
-  .cursor-ring {
-    width: 34px;
-    height: 34px;
-    margin: -17px 0 0 -17px;
-    border: 1.5px solid rgba(176, 141, 87, 0.55);
-    transition: opacity 0.2s ease, width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      height 0.25s cubic-bezier(0.22, 1, 0.36, 1), margin 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.25s ease, background-color 0.25s ease;
-  }
-
-  html.has-custom-cursor,
-  html.has-custom-cursor a,
-  html.has-custom-cursor button {
-    cursor: none;
-  }
-
-  html.has-custom-cursor .cursor-dot,
-  html.has-custom-cursor .cursor-ring {
-    opacity: 1;
-  }
-
-  html.has-custom-cursor .cursor-ring.is-hovering {
-    width: 56px;
-    height: 56px;
-    margin: -28px 0 0 -28px;
-    background: rgba(176, 141, 87, 0.12);
-    border-color: rgba(176, 141, 87, 0.9);
-  }
-
-  html.has-custom-cursor .cursor-dot.is-hovering {
-    opacity: 0;
-  }
-
   /* Scroll reveal */
   .reveal {
     opacity: 0;
@@ -86,51 +30,6 @@
 <script>
   const finePointer = window.matchMedia('(pointer: fine)').matches;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // --- Custom cursor -------------------------------------------------
-  if (finePointer && !reducedMotion) {
-    document.documentElement.classList.add('has-custom-cursor');
-
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (dot) dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-    });
-
-    function tick() {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      if (ring) ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-
-    const hoverSelector =
-      'a, button, input, select, textarea, summary, [role="button"], .cursor-hover';
-
-    document.addEventListener('mouseover', (e) => {
-      const target = (e.target as Element)?.closest?.(hoverSelector);
-      if (target) {
-        dot?.classList.add('is-hovering');
-        ring?.classList.add('is-hovering');
-      }
-    });
-    document.addEventListener('mouseout', (e) => {
-      const target = (e.target as Element)?.closest?.(hoverSelector);
-      if (target) {
-        dot?.classList.remove('is-hovering');
-        ring?.classList.remove('is-hovering');
-      }
-    });
-  }
 
   // --- Scroll reveal ---------------------------------------------------
   const revealEls = document.querySelectorAll<HTMLElement>('.reveal');

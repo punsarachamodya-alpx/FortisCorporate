@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import StatCounter from '../components/StatCounter.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
-import { links } from '../lib/site';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 
@@ -66,10 +65,6 @@ const whoWeServe = [
       <p class="mt-6 max-w-2xl text-lg text-navy-100">
         Fortis Corporate Services provides corporate, legal, HR, accounting and compliance support to businesses and investors in Sri Lanka — under one roof.
       </p>
-      <div class="mt-10 flex flex-col sm:flex-row gap-4">
-        <a href="/contact" class="btn-primary">Submit an Enquiry</a>
-        <a href={links.whatsapp} target="_blank" rel="noopener" class="btn-secondary-inverted">Message on WhatsApp</a>
-      </div>
     </div>
   </section>
 
