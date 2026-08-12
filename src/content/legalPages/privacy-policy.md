@@ -26,7 +26,7 @@ We use the personal data submitted through this website to:
 
 ## How your data is processed
 
-Form submissions on this website are sent by email directly to our team's mailbox (fortiscorps@gmail.com) via a server-side mail process. We do not sell or rent your personal data to third parties, and we do not use your data for purposes unrelated to those described above without your consent.
+Form submissions on this website are sent by email directly to our team's mailbox (info@fortiscorporate.com) via a server-side mail process. We do not sell or rent your personal data to third parties, and we do not use your data for purposes unrelated to those described above without your consent.
 
 ## Cookies and analytics
 
@@ -46,7 +46,7 @@ Subject to applicable law, you may have rights to access, correct, or request de
 
 ## Contact us
 
-If you have questions about this Privacy Policy or how your personal data is handled, please contact us at [fortiscorps@gmail.com](mailto:fortiscorps@gmail.com) or +94 77 655 3151.
+If you have questions about this Privacy Policy or how your personal data is handled, please contact us at [info@fortiscorporate.com](mailto:info@fortiscorporate.com) or +94 77 655 3151.
 
 ## Changes to this policy
 

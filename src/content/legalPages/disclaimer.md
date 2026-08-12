@@ -21,4 +21,4 @@ Before taking or refraining from taking any action based on content on this Site
 
 ## Contact
 
-If you have questions about this Disclaimer, please contact us at [fortiscorps@gmail.com](mailto:fortiscorps@gmail.com).
+If you have questions about this Disclaimer, please contact us at [info@fortiscorporate.com](mailto:info@fortiscorporate.com).

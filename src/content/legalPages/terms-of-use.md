@@ -39,4 +39,4 @@ These Terms of Use are governed by the laws of Sri Lanka, without regard to conf
 
 ## Contact
 
-Questions about these Terms of Use can be directed to [fortiscorps@gmail.com](mailto:fortiscorps@gmail.com).
+Questions about these Terms of Use can be directed to [info@fortiscorporate.com](mailto:info@fortiscorporate.com).
