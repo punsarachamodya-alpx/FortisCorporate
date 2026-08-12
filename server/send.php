@@ -132,5 +132,5 @@ try {
     respond(true);
 } catch (PHPMailerException $e) {
     error_log('Fortis contact form mail error: ' . $e->getMessage());
-    respond(false, 'DEBUG: ' . $e->getMessage());
+    respond(false, 'Sorry, something went wrong sending your message. Please try again or email us directly.');
 }
