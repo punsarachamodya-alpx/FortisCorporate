@@ -5,7 +5,7 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
 
 <BaseLayout
   title="Contact"
-  description="Get in touch with Fortis Corporate Services — submit an enquiry, call, or message us on WhatsApp."
+  description="Get in touch with Fortis Corporate Services — submit an enquiry or message us directly on WhatsApp."
   path="/contact"
 >
   <section class="bg-navy">
@@ -13,12 +13,12 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
       <p class="eyebrow">Get in touch</p>
       <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Let's talk about your requirements</h1>
       <p class="mt-6 max-w-2xl text-navy-100">
-        Submit an enquiry below, or call or WhatsApp us directly.
+        Submit an enquiry below, or message us directly on WhatsApp.
       </p>
 
-      <!-- Prominent click-to-call, especially useful on mobile -->
-      <a href={links.tel} class="mt-8 inline-flex btn-primary">
-        Call {FIRM.phoneDisplay}
+      <!-- Prominent click-to-WhatsApp, especially useful on mobile -->
+      <a href={links.whatsapp} target="_blank" rel="noopener" class="mt-8 inline-flex btn-primary">
+        Message on WhatsApp
       </a>
     </div>
   </section>
@@ -26,7 +26,7 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
   <section class="section bg-white">
     <div class="container-px mx-auto max-w-content grid lg:grid-cols-5 gap-14">
       <!-- Enquiry form -->
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-3 reveal">
         <h2 class="text-2xl sm:text-3xl">Submit an Enquiry</h2>
         <p class="mt-3 text-charcoal/80">
           Fill in the form and we'll get back to you as soon as possible. Fields marked * are required.
@@ -81,7 +81,7 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
       </div>
 
       <!-- Contact details -->
-      <div class="lg:col-span-2 space-y-8">
+      <div class="lg:col-span-2 space-y-8 reveal" data-reveal-delay="120">
         <div class="rounded-sm border border-navy-100 p-7">
           <h3 class="text-lg text-navy">Office</h3>
           <p class="mt-2 text-sm text-charcoal/80">{FIRM.address.full}</p>
@@ -91,7 +91,7 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
 
           <h3 class="mt-6 text-lg text-navy">Phone &amp; WhatsApp</h3>
           <p class="mt-2 text-sm text-charcoal/80">
-            <a href={links.tel} class="text-bronze-600 hover:underline">{FIRM.phoneDisplay}</a>
+            {FIRM.phoneDisplay}
             {' '}·{' '}
             <a href={links.whatsapp} target="_blank" rel="noopener" class="text-bronze-600 hover:underline">Message on WhatsApp</a>
           </p>
