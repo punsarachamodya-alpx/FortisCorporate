@@ -74,13 +74,15 @@ export async function getFirmSettings() {
     footerTagline: settings.footerTagline,
   };
 
+  // Exact office coordinates, used to pin the map precisely instead of
+  // geocoding the free-text address (which can land in the wrong spot).
+  const OFFICE_COORDS = '6.8702845,79.8796700';
+
   const links = {
     tel: `tel:${FIRM.phoneE164}`,
     whatsapp: `https://wa.me/${FIRM.whatsappNumber}`,
     email: `mailto:${FIRM.email}`,
-    googleMapsEmbed: `https://maps.google.com/maps?q=${encodeURIComponent(
-      FIRM.address.full
-    )}&t=&z=15&ie=UTF8&iwloc=&output=embed`,
+    googleMapsEmbed: `https://maps.google.com/maps?q=${OFFICE_COORDS}&t=&z=17&ie=UTF8&iwloc=&output=embed`,
   };
 
   return { FIRM, links };
