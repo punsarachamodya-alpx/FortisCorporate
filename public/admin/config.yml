@@ -92,3 +92,144 @@ collections:
               - { label: "Applies To", name: "appliesTo", widget: "string" }
               - { label: "Indicative Timing", name: "indicativeTiming", widget: "string" }
               - { label: "Notes", name: "notes", widget: "string", required: false }
+
+  # --- Site-wide settings & per-page copy ---------------------------------
+  # Everything below edits text that used to be hardcoded in the page
+  # templates — firm contact details, hero headlines, stats, and body copy
+  # for every page on the site.
+  - name: "site_content"
+    label: "Site Settings & Page Copy"
+    files:
+      - file: "src/content/siteSettings/main.json"
+        name: "settings"
+        label: "Firm Details & Footer"
+        description: "Legal/trading name, registration no., address, phone, WhatsApp, email, office hours, and the footer tagline. Used across the header, footer, contact page and structured data."
+        fields:
+          - { label: "Legal Name", name: "legalName", widget: "string" }
+          - { label: "Trading Name", name: "tradingName", widget: "string" }
+          - { label: "Company Registration No.", name: "registrationNo", widget: "string" }
+          - { label: "Address Line 1", name: "addressLine1", widget: "string" }
+          - { label: "Address Line 2", name: "addressLine2", widget: "string" }
+          - { label: "Phone (display format, e.g. +94 77 655 3151)", name: "phoneDisplay", widget: "string" }
+          - { label: "Phone (E.164 format for tel: links, e.g. +94776553151)", name: "phoneE164", widget: "string" }
+          - { label: "WhatsApp Number (digits only, e.g. 94776553151)", name: "whatsappNumber", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Office Hours", name: "officeHours", widget: "string" }
+          - { label: "Footer Tagline", name: "footerTagline", widget: "text" }
+
+      - file: "src/content/homeContent/main.json"
+        name: "home"
+        label: "Home Page"
+        fields:
+          - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
+          - { label: "Hero Headline", name: "heroHeadline", widget: "string" }
+          - { label: "Hero Subheadline", name: "heroSubheadline", widget: "text" }
+          - label: "Stats Band"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "number" }
+              - { label: "Suffix (e.g. +)", name: "suffix", widget: "string", required: false }
+              - { label: "Label", name: "label", widget: "string" }
+          - { label: "Services Section — Eyebrow", name: "servicesEyebrow", widget: "string" }
+          - { label: "Services Section — Heading", name: "servicesHeading", widget: "string" }
+          - { label: "Why Fortis — Eyebrow", name: "whyFortisEyebrow", widget: "string" }
+          - { label: "Why Fortis — Heading", name: "whyFortisHeading", widget: "string" }
+          - label: "Why Fortis — Columns"
+            name: "whyFortis"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+          - { label: "Who We Serve — Eyebrow", name: "whoWeServeEyebrow", widget: "string" }
+          - { label: "Who We Serve — Heading", name: "whoWeServeHeading", widget: "string" }
+          - label: "Who We Serve — Groups"
+            name: "whoWeServe"
+            widget: "list"
+            fields:
+              - { label: "Group", name: "group", widget: "string" }
+              - { label: "Line", name: "line", widget: "string" }
+          - { label: "Coverage Line", name: "coverageLine", widget: "text" }
+          - { label: "Bottom CTA — Heading", name: "ctaHeading", widget: "string" }
+          - { label: "Bottom CTA — Body", name: "ctaBody", widget: "text" }
+
+      - file: "src/content/aboutContent/main.json"
+        name: "about"
+        label: "About Page"
+        fields:
+          - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
+          - { label: "Hero Heading", name: "heroHeading", widget: "string" }
+          - label: "Paragraphs (HTML allowed, e.g. <strong>text</strong>)"
+            name: "paragraphs"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Stats — Eyebrow", name: "statsEyebrow", widget: "string" }
+          - { label: "Stats — Heading", name: "statsHeading", widget: "string" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value (e.g. 30+)", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+          - { label: "Bottom CTA — Heading", name: "ctaHeading", widget: "string" }
+          - { label: "Bottom CTA — Body", name: "ctaBody", widget: "text" }
+
+      - file: "src/content/servicesContent/main.json"
+        name: "services_page"
+        label: "Services Page"
+        fields:
+          - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
+          - { label: "Hero Heading", name: "heroHeading", widget: "string" }
+          - { label: "Hero Subheading", name: "heroSubheading", widget: "text" }
+          - { label: "Bottom CTA — Heading", name: "ctaHeading", widget: "string" }
+          - { label: "Bottom CTA — Body", name: "ctaBody", widget: "text" }
+
+      - file: "src/content/resourcesContent/main.json"
+        name: "resources_page"
+        label: "Resources Page"
+        fields:
+          - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
+          - { label: "Hero Heading", name: "heroHeading", widget: "string" }
+          - { label: "Hero Subheading", name: "heroSubheading", widget: "text" }
+          - { label: "Guides — Eyebrow", name: "guidesEyebrow", widget: "string" }
+          - { label: "Guides — Heading", name: "guidesHeading", widget: "string" }
+          - { label: "Compliance — Eyebrow", name: "complianceEyebrow", widget: "string" }
+          - { label: "Compliance — Heading", name: "complianceHeading", widget: "string" }
+          - { label: "Compliance — Intro (HTML allowed)", name: "complianceIntro", widget: "text" }
+          - { label: "Compliance — Disclaimer", name: "complianceDisclaimer", widget: "text" }
+          - { label: "Download Gate — Heading", name: "downloadGateHeading", widget: "string" }
+          - { label: "Download Gate — Body", name: "downloadGateBody", widget: "text" }
+          - { label: "Bottom CTA — Heading", name: "ctaHeading", widget: "string" }
+          - { label: "Bottom CTA — Body", name: "ctaBody", widget: "text" }
+
+      - file: "src/content/faqContent/main.json"
+        name: "faq_page"
+        label: "FAQ Page"
+        fields:
+          - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
+          - { label: "Hero Heading", name: "heroHeading", widget: "string" }
+          - { label: "Bottom CTA — Heading", name: "ctaHeading", widget: "string" }
+          - { label: "Bottom CTA — Body", name: "ctaBody", widget: "text" }
+
+      - file: "src/content/contactContent/main.json"
+        name: "contact_page"
+        label: "Contact Page"
+        fields:
+          - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string" }
+          - { label: "Hero Heading", name: "heroHeading", widget: "string" }
+          - { label: "Hero Subheading", name: "heroSubheading", widget: "text" }
+          - { label: "WhatsApp Button Label", name: "whatsappButtonLabel", widget: "string" }
+          - { label: "Form Heading", name: "formHeading", widget: "string" }
+          - { label: "Form Intro", name: "formIntro", widget: "text" }
+
+  - name: "legal_pages"
+    label: "Legal Pages"
+    description: "Privacy Policy, Terms of Use, Cookie Notice and Disclaimer. These were drafted for launch — have them checked by a lawyer before relying on them, and keep them in sync with what the site actually does."
+    folder: "src/content/legalPages"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Last Updated (display text, e.g. August 2026)", name: "lastUpdated", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }

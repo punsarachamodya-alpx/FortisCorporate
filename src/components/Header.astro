@@ -1,7 +1,8 @@
 ---
-import { primaryNav, FIRM } from '../lib/site';
+import { primaryNav, getFirmSettings } from '../lib/site';
 import LogoHorizontal from './LogoHorizontal.astro';
 
+const { FIRM } = await getFirmSettings();
 const currentPath = Astro.url.pathname;
 
 function isActive(href: string) {

@@ -1,5 +1,7 @@
 ---
-import { links } from '../lib/site';
+import { getFirmSettings } from '../lib/site';
+
+const { links } = await getFirmSettings();
 ---
 
 <a

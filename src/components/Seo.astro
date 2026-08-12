@@ -1,5 +1,5 @@
 ---
-import { SITE_URL, SITE_NAME, FIRM } from '../lib/site';
+import { SITE_URL, SITE_NAME, getFirmSettings } from '../lib/site';
 
 interface Props {
   title: string;
@@ -8,6 +8,7 @@ interface Props {
   ogImage?: string;
 }
 
+const { FIRM } = await getFirmSettings();
 const { title, description, path = '/', ogImage = '/og-default.svg' } = Astro.props;
 
 const pageTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;

@@ -1,0 +1,41 @@
+{
+  "heroEyebrow": "Colombo, Sri Lanka",
+  "heroHeadline": "Integrated Corporate & Legal Support for Businesses in Sri Lanka",
+  "heroSubheadline": "Fortis Corporate Services provides corporate, legal, HR, accounting and compliance support to businesses and investors in Sri Lanka — under one roof.",
+  "stats": [
+    { "value": 30, "suffix": "+", "label": "Years combined professional experience" },
+    { "value": 30, "suffix": "+", "label": "Companies incorporated" },
+    { "value": 6, "suffix": "", "label": "Integrated service areas" }
+  ],
+  "servicesEyebrow": "What we do",
+  "servicesHeading": "Six integrated service areas, one point of contact",
+  "whyFortisEyebrow": "Why Fortis",
+  "whyFortisHeading": "A different kind of corporate services partner",
+  "whyFortis": [
+    {
+      "title": "Integrated Business Support",
+      "body": "Access corporate, legal, HR, accounting, tax and compliance services through one provider — reducing the need to coordinate with multiple firms."
+    },
+    {
+      "title": "Practical & Business-Focused Advice",
+      "body": "Practical solutions grounded in your business objectives, not purely theoretical or technical advice."
+    },
+    {
+      "title": "Personalised & Reliable Service",
+      "body": "Close, responsive support tailored to the size, requirements and stage of your business."
+    }
+  ],
+  "whoWeServeEyebrow": "Who we serve",
+  "whoWeServeHeading": "Built for businesses at every stage",
+  "whoWeServe": [
+    { "group": "SMEs & established local businesses", "line": "Day-to-day corporate, legal and compliance support that scales with you." },
+    { "group": "Startups & entrepreneurs", "line": "Getting the legal and corporate foundations right from day one." },
+    { "group": "Foreign investors & foreign-owned businesses", "line": "Structuring, registration and compliance support for entering the Sri Lankan market." },
+    { "group": "Corporates & larger businesses", "line": "Dependable corporate secretarial and legal support at scale." },
+    { "group": "Individuals & professionals", "line": "Notarial, statutory and legal documentation handled with care." },
+    { "group": "Listed companies & regulated-sector businesses", "line": "Governance and compliance support for regulatory obligations." }
+  ],
+  "coverageLine": "We serve clients across Sri Lanka, with a strong presence in Colombo and the Western Province, and support foreign investors and overseas businesses establishing, operating or investing in Sri Lanka. Many of our services can be delivered remotely.",
+  "ctaHeading": "Ready to discuss your requirements?",
+  "ctaBody": "Tell us what you need and we'll get back to you shortly."
+}

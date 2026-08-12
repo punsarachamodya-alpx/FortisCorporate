@@ -6,8 +6,9 @@
 // launch checklist), consider also generating a static PDF file for direct
 // download instead of relying on browser print-to-PDF.
 import { getCollection } from 'astro:content';
-import { FIRM } from '../../lib/site';
+import { getFirmSettings } from '../../lib/site';
 
+const { FIRM } = await getFirmSettings();
 const complianceData = await getCollection('complianceDeadlines');
 const deadlines = complianceData[0]?.data.deadlines ?? [];
 const today = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
