@@ -36,11 +36,7 @@ const year = new Date().getFullYear();
       <p class="eyebrow text-bronze-200">Contact</p>
       <ul class="mt-4 space-y-2 text-sm text-navy-100">
         <li>{FIRM.address.full}</li>
-        <li>
-          {FIRM.phoneDisplay}
-          {' '}·{' '}
-          <a href={links.whatsapp} target="_blank" rel="noopener" class="hover:text-bronze">WhatsApp</a>
-        </li>
+        <li>{FIRM.phoneDisplay}</li>
         <li><a href={links.email} class="hover:text-bronze">{FIRM.email}</a></li>
         <li class="pt-1 text-navy-200">{FIRM.officeHours}</li>
       </ul>
