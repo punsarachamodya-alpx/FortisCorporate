@@ -5,11 +5,16 @@
 // so it never fights assistive tech or trackpads.
 ---
 
-<style>
-  /* Scroll reveal */
+<style is:global>
+  /* Scroll reveal — cards (and other flagged elements) rise up from below
+     as they enter the viewport while scrolling down.
+     `is:global` is required here: this component renders no elements of
+     its own (no cursor DOM anymore), so Astro's default scoped-CSS
+     attribute would never match any element on the pages that use
+     `.reveal`, silently no-opping the whole animation. */
   .reveal {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(56px);
     transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
