@@ -2,7 +2,7 @@
 
 Marketing website for Fortis Corporate Services (Pvt) Ltd, a Colombo-based corporate secretarial, legal and business services firm.
 
-Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), output as a fully static site (`astro build` → `dist/`) suitable for ordinary Hostinger shared/business hosting. Content (services, FAQ, guides, blog, compliance calendar) lives in Astro content collections under `src/content/` as Markdown/JSON, so future edits are localized and low-risk. The contact and resource-download forms are handled by a small PHP + PHPMailer script in `server/`, since this is a static site with no other backend. Content can also be edited without touching code via the Decap CMS panel at `/admin`.
+Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), output as a fully static site (`astro build` → `dist/`) suitable for ordinary Hostinger shared/business hosting. Nearly all editorial content — services, FAQ, guides, blog, the compliance calendar, firm contact details, and every page's headline/body copy (Home, About, Services, Resources, FAQ, Contact, and the four legal pages) — lives in Astro content collections under `src/content/` as Markdown/JSON, so future edits are localized, low-risk, and don't require touching page templates. The contact and resource-download forms are handled by a small PHP + PHPMailer script in `server/`, since this is a static site with no other backend. All of that content can be edited without touching code via the Decap CMS panel at `/admin`.
 
 ## Local development
 
@@ -24,11 +24,15 @@ The PHP contact form cannot be tested against `npm run dev` (Astro's dev server 
 
 ```
 src/
-  content/        # Content collections: services, faq, guides, blog, complianceDeadlines
+  content/
+    services/ faq/ guides/ blog/ complianceDeadlines/ legalPages/   # Markdown/JSON content
+    siteSettings/                                                  # Firm details & footer tagline
+    homeContent/ aboutContent/ servicesContent/                     # Per-page copy (hero, stats, CTAs, ...)
+    resourcesContent/ faqContent/ contactContent/
   components/      # Shared Astro components (Header, Footer, SEO, CTA, ...)
   layouts/         # BaseLayout.astro
-  pages/           # Routes — one file/folder per page
-  lib/site.ts      # Firm details, nav links, domain — single source of truth
+  pages/           # Routes — one file/folder per page; pull copy from the collections above
+  lib/site.ts      # Nav structure, domain, GA4 ID (code-level config) + getFirmSettings() helper
 server/
   send.php         # Handles the enquiry form and resource-download form (SMTP via PHPMailer)
   config.example.php  # Template for server/config.php (see Deployment below)
@@ -75,6 +79,17 @@ Without this step, the contact form and resource-download form will show a frien
 
 The site includes a git-based CMS admin panel at `/admin`, so content can be edited without touching code or running `git push` directly. It edits the same Markdown/JSON files in `src/content/` — saving a change in the CMS commits directly to the `main` branch, which triggers the same GitHub Actions deploy as any other push.
 
+From `/admin`, an editor can change:
+
+- **Firm Details & Footer** — legal/trading name, registration no., address, phone, WhatsApp number, email, office hours, footer tagline.
+- **Every page's copy** — Home (hero, stats, "Why Fortis", "Who We Serve", CTAs), About (intro paragraphs, stats), Services/Resources/FAQ/Contact (hero text and CTAs).
+- **Services** — the six category pages and their sub-services.
+- **FAQ, Guides, Blog posts** — full content.
+- **Compliance Calendar** — the indicative deadlines table (verify against current regulatory sources before changing).
+- **Legal Pages** — Privacy Policy, Terms of Use, Cookie Notice, Disclaimer (full body text).
+
+What stays in code (not exposed as CMS fields, on purpose): navigation structure and routes (`primaryNav`, `footerLegalLinks`, `serviceCategorySlugs` in `src/lib/site.ts`), the live domain (`SITE_URL`), the GA4 measurement ID, and all visual design/layout. A typo in a free-text field for any of those would risk breaking navigation or the build, so they're left as developer-only changes. Also note: the legal pages' body text mentions the firm's email/phone as plain prose (not pulled live from Firm Details) — if those change, double-check the legal pages still read correctly.
+
 Because this site runs on plain Hostinger hosting (not Netlify), it can't use Netlify's built-in CMS authentication. Instead, `server/oauth/` implements a small GitHub OAuth proxy. One-time setup:
 
 1. Create a GitHub OAuth App at <https://github.com/settings/developers>:
@@ -87,7 +102,6 @@ Because this site runs on plain Hostinger hosting (not Netlify), it can't use Ne
 
 - **Domain**: `fortiscorporate.com` is used as a placeholder throughout the codebase (see `TODO: confirm domain` comments in `astro.config.mjs` and `src/lib/site.ts`). Update `SITE_URL` in `src/lib/site.ts` once the real domain is confirmed.
 - **Compliance calendar dates**: the indicative deadlines in `src/content/complianceDeadlines/deadlines.json` (and shown on `/resources`) have **not** been verified against current Sri Lankan regulatory sources. Verify before publishing.
-- **Calendly link**: `links.calendly` in `src/lib/site.ts` is a placeholder — replace with the firm's real scheduling link.
 - **GA4 measurement ID**: `GA4_MEASUREMENT_ID` in `src/lib/site.ts` is a placeholder (`G-XXXXXXXXXX`) — replace with the real ID once supplied.
-- **Logo**: the site currently uses a text wordmark ("FORTIS") as a placeholder — see `TODO: replace with real logo` comments in `Header.astro`, `favicon.svg` and `og-default.svg`.
+- **Logo**: the real Fortis logo is in use (vectorised from `Logo Design.pdf`, design by Akila M.) — see `src/components/LogoMark.astro` / `LogoHorizontal.astro`, `public/favicon.svg` and `public/og-default.svg`. If the firm supplies an updated/refined logo file later, regenerate these the same way (vector-trace the artwork, don't rasterize it).
 - **OG share image**: `public/og-default.svg` is an SVG placeholder; some platforms (Facebook, LinkedIn) don't render SVG `og:image` tags reliably — replace with a real PNG/JPG once brand assets exist.

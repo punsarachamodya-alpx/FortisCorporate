@@ -9,6 +9,8 @@ const guides = (await getCollection('guides', ({ data }) => !data.draft)).sort(
 
 const complianceData = await getCollection('complianceDeadlines');
 const deadlines = complianceData[0]?.data.deadlines ?? [];
+
+const res = (await getCollection('resourcesContent'))[0].data;
 ---
 
 <BaseLayout
@@ -18,10 +20,10 @@ const deadlines = complianceData[0]?.data.deadlines ?? [];
 >
   <section class="bg-navy">
     <div class="container-px mx-auto max-w-content py-20 sm:py-28">
-      <p class="eyebrow">Resources</p>
-      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Guides & Compliance Calendar</h1>
+      <p class="eyebrow">{res.heroEyebrow}</p>
+      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">{res.heroHeading}</h1>
       <p class="mt-6 max-w-2xl text-navy-100">
-        Practical, general-information resources for businesses operating in Sri Lanka.
+        {res.heroSubheading}
       </p>
     </div>
   </section>
@@ -29,14 +31,15 @@ const deadlines = complianceData[0]?.data.deadlines ?? [];
   <!-- Guides -->
   <section id="guides" class="section bg-offwhite">
     <div class="container-px mx-auto max-w-content">
-      <p class="eyebrow">Guides</p>
-      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">Practical guides for doing business in Sri Lanka</h2>
+      <p class="eyebrow">{res.guidesEyebrow}</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">{res.guidesHeading}</h2>
 
       <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {guides.map((guide) => (
+        {guides.map((guide, i) => (
           <a
             href={`/resources/guides/${guide.slug}`}
-            class="group block rounded-sm border border-navy-100 bg-white p-7 hover:border-bronze hover:shadow-md transition-all duration-150"
+            class="group block rounded-sm border border-navy-100 bg-white p-7 hover:border-bronze hover:shadow-md transition-all duration-150 reveal"
+            data-reveal-delay={(i % 3) * 90}
           >
             <h3 class="text-xl leading-snug group-hover:text-bronze-600">{guide.data.title}</h3>
             <p class="mt-3 text-sm text-charcoal/80">{guide.data.description}</p>
@@ -53,13 +56,11 @@ const deadlines = complianceData[0]?.data.deadlines ?? [];
   <!-- Compliance calendar -->
   <section id="compliance-calendar" class="section bg-white scroll-mt-24">
     <div class="container-px mx-auto max-w-content">
-      <p class="eyebrow">Compliance Calendar</p>
-      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">Key recurring statutory deadlines for Sri Lankan SMEs</h2>
-      <p class="mt-4 max-w-2xl text-charcoal/80">
-        A quick-reference overview of the kinds of recurring obligations Sri Lankan businesses commonly need to track. Every date range below is <strong>indicative only</strong>.
-      </p>
+      <p class="eyebrow">{res.complianceEyebrow}</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">{res.complianceHeading}</h2>
+      <p class="mt-4 max-w-2xl text-charcoal/80" set:html={res.complianceIntro} />
 
-      <div class="mt-10 overflow-x-auto rounded-sm border border-navy-100">
+      <div class="mt-10 overflow-x-auto rounded-sm border border-navy-100 reveal">
         <table class="w-full text-sm text-left border-collapse min-w-[640px]">
           <thead class="bg-navy text-white">
             <tr>
@@ -84,14 +85,14 @@ const deadlines = complianceData[0]?.data.deadlines ?? [];
       </div>
 
       <p class="mt-6 max-w-3xl text-sm text-charcoal/70 italic">
-        This is general information only, not professional advice, and deadlines vary by entity. Contact us to confirm what applies to your business.
+        {res.complianceDisclaimer}
       </p>
 
       <!-- Email-gated download -->
-      <div id="download-gate" class="mt-14 rounded-sm bg-navy p-8 sm:p-10">
-        <h3 class="text-2xl text-white">Get the printable compliance calendar</h3>
+      <div id="download-gate" class="mt-14 rounded-sm bg-navy p-8 sm:p-10 reveal">
+        <h3 class="text-2xl text-white">{res.downloadGateHeading}</h3>
         <p class="mt-2 text-navy-100 max-w-xl">
-          Enter your email to unlock a printable version of this compliance calendar that you can save or print for reference.
+          {res.downloadGateBody}
         </p>
 
         <form id="resource-download-form" class="mt-6 flex flex-col sm:flex-row gap-3 max-w-lg" novalidate>
@@ -127,7 +128,7 @@ const deadlines = complianceData[0]?.data.deadlines ?? [];
     </div>
   </section>
 
-  <CtaBand heading="Need help confirming what applies to your business?" body="Every business is different — talk to us about your specific compliance requirements." />
+  <CtaBand heading={res.ctaHeading} body={res.ctaBody} />
 </BaseLayout>
 
 <script>

@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content';
 
 const faqs = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(faqs.map((entry) => entry.render()));
+const faqPage = (await getCollection('faqContent'))[0].data;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -25,8 +26,8 @@ const jsonLd = {
 
   <section class="bg-navy">
     <div class="container-px mx-auto max-w-content py-20 sm:py-28">
-      <p class="eyebrow">FAQ</p>
-      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Frequently Asked Questions</h1>
+      <p class="eyebrow">{faqPage.heroEyebrow}</p>
+      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">{faqPage.heroHeading}</h1>
     </div>
   </section>
 
@@ -36,7 +37,7 @@ const jsonLd = {
         {faqs.map((entry, i) => {
           const { Content } = rendered[i];
           return (
-            <details class="group py-6" name="faq">
+            <details class="group py-6 reveal" data-reveal-delay={(i % 5) * 60} name="faq">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
                 <span class="text-lg text-navy font-medium">{entry.data.question}</span>
                 <span class="shrink-0 text-bronze text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
@@ -51,5 +52,5 @@ const jsonLd = {
     </div>
   </section>
 
-  <CtaBand heading="Didn't find what you were looking for?" body="Send us your question and we'll get back to you directly." />
+  <CtaBand heading={faqPage.ctaHeading} body={faqPage.ctaBody} />
 </BaseLayout>

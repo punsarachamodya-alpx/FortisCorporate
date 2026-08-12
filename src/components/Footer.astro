@@ -1,15 +1,17 @@
 ---
-import { FIRM, links, footerLegalLinks, primaryNav, serviceCategorySlugs } from '../lib/site';
+import { footerLegalLinks, primaryNav, serviceCategorySlugs, getFirmSettings } from '../lib/site';
+import LogoHorizontal from './LogoHorizontal.astro';
 
+const { FIRM, links } = await getFirmSettings();
 const year = new Date().getFullYear();
 ---
 
 <footer class="bg-navy text-navy-100">
   <div class="container-px mx-auto max-w-content py-16 grid gap-12 md:grid-cols-4">
     <div class="md:col-span-1">
-      <p class="font-heading text-2xl tracking-widest text-white">FORTIS</p>
-      <p class="mt-3 text-sm text-navy-200">
-        Corporate, legal, HR, accounting and compliance support for businesses and investors in Sri Lanka — under one roof.
+      <LogoHorizontal class="h-8 w-auto text-white" />
+      <p class="mt-4 text-sm text-navy-200">
+        {FIRM.footerTagline}
       </p>
     </div>
 
@@ -35,7 +37,7 @@ const year = new Date().getFullYear();
       <p class="eyebrow text-bronze-200">Contact</p>
       <ul class="mt-4 space-y-2 text-sm text-navy-100">
         <li>{FIRM.address.full}</li>
-        <li><a href={links.tel} class="hover:text-bronze">{FIRM.phoneDisplay}</a> (also WhatsApp)</li>
+        <li>{FIRM.phoneDisplay}</li>
         <li><a href={links.email} class="hover:text-bronze">{FIRM.email}</a></li>
         <li class="pt-1 text-navy-200">{FIRM.officeHours}</li>
       </ul>
@@ -45,7 +47,7 @@ const year = new Date().getFullYear();
   <div class="border-t border-navy-500/40">
     <div class="container-px mx-auto max-w-content py-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-xs text-navy-200">
       <p>
-        &copy; {year} {FIRM.legalName}. Company Registration No. {FIRM.registrationNo}. All rights reserved.
+        &copy; {year} {FIRM.legalName}. All rights reserved.
       </p>
       <ul class="flex flex-wrap gap-x-6 gap-y-2">
         {footerLegalLinks.map((item) => (

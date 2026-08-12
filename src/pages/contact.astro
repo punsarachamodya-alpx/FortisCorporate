@@ -1,24 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { FIRM, links, serviceCategorySlugs } from '../lib/site';
+import { serviceCategorySlugs, getFirmSettings } from '../lib/site';
+import { getCollection } from 'astro:content';
+
+const { FIRM, links } = await getFirmSettings();
+const c = (await getCollection('contactContent'))[0].data;
 ---
 
 <BaseLayout
   title="Contact"
-  description="Get in touch with Fortis Corporate Services — submit an enquiry, call, WhatsApp, or book a consultation directly through our calendar."
+  description="Get in touch with Fortis Corporate Services — submit an enquiry or message us directly on WhatsApp."
   path="/contact"
 >
   <section class="bg-navy">
     <div class="container-px mx-auto max-w-content py-20 sm:py-28">
-      <p class="eyebrow">Get in touch</p>
-      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">Let's talk about your requirements</h1>
+      <p class="eyebrow">{c.heroEyebrow}</p>
+      <h1 class="mt-3 text-4xl sm:text-5xl text-white max-w-2xl">{c.heroHeading}</h1>
       <p class="mt-6 max-w-2xl text-navy-100">
-        Submit an enquiry below, call or WhatsApp us directly, or book a consultation through our online calendar.
+        {c.heroSubheading}
       </p>
 
-      <!-- Prominent click-to-call, especially useful on mobile -->
-      <a href={links.tel} class="mt-8 inline-flex btn-primary">
-        Call {FIRM.phoneDisplay}
+      <!-- Prominent click-to-WhatsApp, especially useful on mobile -->
+      <a href={links.whatsapp} target="_blank" rel="noopener" class="mt-8 inline-flex btn-primary">
+        {c.whatsappButtonLabel}
       </a>
     </div>
   </section>
@@ -26,10 +30,10 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
   <section class="section bg-white">
     <div class="container-px mx-auto max-w-content grid lg:grid-cols-5 gap-14">
       <!-- Enquiry form -->
-      <div class="lg:col-span-3">
-        <h2 class="text-2xl sm:text-3xl">Submit an Enquiry</h2>
+      <div class="lg:col-span-3 reveal">
+        <h2 class="text-2xl sm:text-3xl">{c.formHeading}</h2>
         <p class="mt-3 text-charcoal/80">
-          Fill in the form and we'll get back to you as soon as possible. Fields marked * are required.
+          {c.formIntro}
         </p>
 
         <form id="enquiry-form" class="mt-8 grid sm:grid-cols-2 gap-5" novalidate>
@@ -81,7 +85,7 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
       </div>
 
       <!-- Contact details -->
-      <div class="lg:col-span-2 space-y-8">
+      <div class="lg:col-span-2 space-y-8 reveal" data-reveal-delay="120">
         <div class="rounded-sm border border-navy-100 p-7">
           <h3 class="text-lg text-navy">Office</h3>
           <p class="mt-2 text-sm text-charcoal/80">{FIRM.address.full}</p>
@@ -91,7 +95,7 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
 
           <h3 class="mt-6 text-lg text-navy">Phone &amp; WhatsApp</h3>
           <p class="mt-2 text-sm text-charcoal/80">
-            <a href={links.tel} class="text-bronze-600 hover:underline">{FIRM.phoneDisplay}</a>
+            {FIRM.phoneDisplay}
             {' '}·{' '}
             <a href={links.whatsapp} target="_blank" rel="noopener" class="text-bronze-600 hover:underline">Message on WhatsApp</a>
           </p>
@@ -113,29 +117,6 @@ import { FIRM, links, serviceCategorySlugs } from '../lib/site';
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Calendly booking -->
-  <section id="book-a-consultation" class="section bg-offwhite scroll-mt-24">
-    <div class="container-px mx-auto max-w-content">
-      <p class="eyebrow">Book a Consultation</p>
-      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">Pick a time that works for you</h2>
-      <p class="mt-4 max-w-2xl text-charcoal/80">
-        Prefer to talk it through directly? Book a short consultation using the calendar below.
-      </p>
-
-      <div class="mt-10 rounded-sm overflow-hidden border border-navy-100 bg-white">
-        <!-- TODO: confirm the firm's real Calendly (or equivalent) link in src/lib/site.ts (links.calendly) -->
-        <iframe
-          title="Book a consultation"
-          src={`${links.calendly}?embed_domain=fortiscorporate.com&embed_type=Inline&hide_gdpr_banner=1`}
-          width="100%"
-          height="700"
-          style="border:0;"
-          loading="lazy"
-        ></iframe>
       </div>
     </div>
   </section>

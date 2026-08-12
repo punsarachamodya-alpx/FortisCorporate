@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { FIRM, SITE_URL } from '../lib/site';
+import { getEntry } from 'astro:content';
 
-const lastUpdated = 'August 2026';
+const entry = await getEntry('legalPages', 'terms-of-use');
+const { Content } = await entry.render();
 ---
 
 <BaseLayout
@@ -12,61 +13,14 @@ const lastUpdated = 'August 2026';
 >
   <section class="bg-navy">
     <div class="container-px mx-auto max-w-content py-16 sm:py-20">
-      <h1 class="text-4xl text-white">Terms of Use</h1>
-      <p class="mt-3 text-navy-100">Last updated: {lastUpdated}</p>
+      <h1 class="text-4xl text-white">{entry.data.title}</h1>
+      <p class="mt-3 text-navy-100">Last updated: {entry.data.lastUpdated}</p>
     </div>
   </section>
 
   <section class="section bg-white">
     <div class="container-px mx-auto max-w-content max-w-3xl prose prose-neutral prose-headings:font-heading prose-headings:text-navy prose-a:text-bronze-600">
-      <p>
-        These Terms of Use govern your access to and use of the website at {SITE_URL} (the "Site"), operated by {FIRM.legalName}. By accessing or using the Site, you agree to these terms. If you do not agree, please do not use the Site.
-      </p>
-
-      <h2>Use of the Site</h2>
-      <p>
-        You may use this Site for lawful purposes only, and in a way that does not infringe the rights of, or restrict or inhibit the use and enjoyment of the Site by, any third party. You must not misuse the Site by knowingly introducing viruses, attempting unauthorised access, or engaging in any activity that could damage, disable or impair the Site.
-      </p>
-
-      <h2>No professional advice</h2>
-      <p>
-        Content on this Site — including service descriptions, guides, the compliance calendar and FAQ — is provided for general informational purposes only and does not constitute legal, tax, accounting or other professional advice. See our <a href="/disclaimer">Disclaimer</a> for further detail.
-      </p>
-
-      <h2>Intellectual property</h2>
-      <p>
-        Unless otherwise indicated, the content, design, text and graphics on this Site are the property of {FIRM.legalName} or its licensors and are protected by applicable intellectual property laws. You may view and print pages from the Site for your own personal, non-commercial reference, but may not reproduce, republish or redistribute content from this Site without our prior written consent.
-      </p>
-
-      <h2>Third-party links and tools</h2>
-      <p>
-        This Site may link to, or embed, third-party tools such as our online scheduling calendar and Google Maps. We are not responsible for the content, privacy practices, or availability of third-party websites or services.
-      </p>
-
-      <h2>No client relationship</h2>
-      <p>
-        Submitting an enquiry, downloading a resource, or otherwise using this Site does not, on its own, create a client relationship, engagement, or retainer with {FIRM.legalName}. A formal engagement arises only once we have agreed on the scope of services in writing.
-      </p>
-
-      <h2>Limitation of liability</h2>
-      <p>
-        To the fullest extent permitted by applicable law, {FIRM.legalName} shall not be liable for any direct, indirect, incidental or consequential loss or damage arising from your use of, or inability to use, this Site or its content.
-      </p>
-
-      <h2>Changes to these terms</h2>
-      <p>
-        We may update these Terms of Use from time to time. Continued use of the Site after changes are posted constitutes acceptance of the revised terms.
-      </p>
-
-      <h2>Governing law</h2>
-      <p>
-        These Terms of Use are governed by the laws of Sri Lanka, without regard to conflict of law principles.
-      </p>
-
-      <h2>Contact</h2>
-      <p>
-        Questions about these Terms of Use can be directed to <a href={`mailto:${FIRM.email}`}>{FIRM.email}</a>.
-      </p>
+      <Content />
     </div>
   </section>
 </BaseLayout>
