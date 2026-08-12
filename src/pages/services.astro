@@ -43,8 +43,8 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
           {service.data.subservices.map((sub) => (
             <div class="service-card rounded-sm border border-navy-100 bg-white p-6">
               <h3 class="text-lg">{sub.name}</h3>
-              <p class="service-desc mt-2 text-sm text-charcoal/80 line-clamp-2">{sub.description}</p>
-              <button type="button" class="read-more-toggle hidden mt-3 gap-1 text-sm font-semibold text-bronze hover:text-bronze-600" aria-expanded="false">
+              <p class="service-desc hidden mt-2 text-sm text-charcoal/80">{sub.description}</p>
+              <button type="button" class="read-more-toggle mt-3 inline-flex items-center gap-1 text-sm font-semibold text-bronze hover:text-bronze-600" aria-expanded="false">
                 <span class="read-more-label">Read more</span>
                 <svg class="read-more-icon w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M5 7.5L10 12.5L15 7.5" />
@@ -61,35 +61,19 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 </BaseLayout>
 
 <script>
-  function setupReadMore() {
-    document.querySelectorAll<HTMLElement>('.service-card').forEach((card) => {
-      const desc = card.querySelector<HTMLElement>('.service-desc');
-      const toggle = card.querySelector<HTMLButtonElement>('.read-more-toggle');
-      const label = card.querySelector<HTMLElement>('.read-more-label');
-      const icon = card.querySelector<SVGElement>('.read-more-icon');
-      if (!desc || !toggle || !label) return;
+  document.querySelectorAll<HTMLElement>('.service-card').forEach((card) => {
+    const desc = card.querySelector<HTMLElement>('.service-desc');
+    const toggle = card.querySelector<HTMLButtonElement>('.read-more-toggle');
+    const label = card.querySelector<HTMLElement>('.read-more-label');
+    const icon = card.querySelector<SVGElement>('.read-more-icon');
+    if (!desc || !toggle || !label) return;
 
-      // Only show the toggle when the description is actually being clipped.
-      if (desc.scrollHeight > desc.clientHeight + 1) {
-        toggle.classList.remove('hidden');
-        toggle.classList.add('inline-flex', 'items-center');
-      }
-
-      toggle.addEventListener('click', () => {
-        const isExpanded = desc.classList.contains('line-clamp-none');
-        desc.classList.toggle('line-clamp-none', !isExpanded);
-        desc.classList.toggle('line-clamp-2', isExpanded);
-        label.textContent = isExpanded ? 'Read more' : 'Read less';
-        toggle.setAttribute('aria-expanded', String(!isExpanded));
-        icon?.classList.toggle('rotate-180', !isExpanded);
-      });
+    toggle.addEventListener('click', () => {
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      desc.classList.toggle('hidden', isExpanded);
+      label.textContent = isExpanded ? 'Read more' : 'Read less';
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+      icon?.classList.toggle('rotate-180', !isExpanded);
     });
-  }
-
-  // Measure after web fonts settle so line-height/overflow checks are accurate.
-  if ('fonts' in document) {
-    document.fonts.ready.then(setupReadMore);
-  } else {
-    setupReadMore();
-  }
+  });
 </script>
