@@ -24,7 +24,7 @@ return [
     // --- Mail routing -------------------------------------------------------
     'mail' => [
         // Sri Lanka firm inbox that receives enquiries & resource-download leads.
-        'to_address'   => 'fortiscorps@gmail.com',
+        'to_address'   => 'info@fortiscorporate.com',
         'to_name'      => 'Fortis Corporate Services',
         'from_address' => 'noreply@fortiscorporate.com',
         'from_name'    => 'Fortis Corporate Services Website',

@@ -29,4 +29,4 @@ We may update this Cookie Notice from time to time to reflect changes in the coo
 
 ## Contact
 
-Questions about this Cookie Notice can be directed to [fortiscorps@gmail.com](mailto:fortiscorps@gmail.com).
+Questions about this Cookie Notice can be directed to [info@fortiscorporate.com](mailto:info@fortiscorporate.com).
