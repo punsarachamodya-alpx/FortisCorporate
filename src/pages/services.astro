@@ -23,7 +23,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 
   <!-- Jump nav -->
   <nav aria-label="Service categories" class="sticky top-20 z-40 bg-white border-b border-navy-100">
-    <ul class="container-px mx-auto max-w-content flex gap-6 overflow-x-auto py-4 text-sm font-medium whitespace-nowrap">
+    <ul class="container-px flex justify-start gap-6 lg:gap-10 overflow-x-auto py-4 text-sm font-medium whitespace-nowrap">
       {services.map((service) => (
         <li>
           <a href={`#${service.data.anchor}`} class="text-navy hover:text-bronze">{service.data.title}</a>
