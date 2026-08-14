@@ -1,7 +1,9 @@
 ---
 /**
  * BrandLogo.astro — the official Fortis Corporate Services mark, paired with
- * a text lockup (the delivered brand assets are mark-only, no wordmark file).
+ * a stacked "FORTIS / CORPORATE SERVICES" text lockup matching the brand's
+ * original wordmark styling (the delivered brand assets are mark-only, no
+ * wordmark file, so the text is set in Montserrat rather than vector-traced).
  *
  * `variant="navy"` (default) for light backgrounds (header), `variant="white"`
  * for the navy footer/hero.
@@ -19,9 +21,10 @@ const markSvg = variant === 'white' ? whiteMark : navyMark;
 const textColorClass = variant === 'white' ? 'text-white' : 'text-navy';
 ---
 
-<span class:list={['inline-flex items-center gap-2.5 [&>svg]:h-8 [&>svg]:w-auto sm:[&>svg]:h-9', className]}>
+<span class:list={['inline-flex items-center gap-2.5 [&>svg]:h-10 [&>svg]:w-auto sm:[&>svg]:h-11', className]}>
   <Fragment set:html={markSvg} />
-  <span class:list={['font-heading font-semibold tracking-tight leading-none text-lg sm:text-xl', textColorClass]}>
-    Fortis Corporate Services
+  <span class:list={['font-brand leading-none', textColorClass]}>
+    <span class="block text-xl sm:text-2xl font-black tracking-tight uppercase">Fortis</span>
+    <span class="block text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mt-0.5">Corporate Services</span>
   </span>
 </span>
