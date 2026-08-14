@@ -38,9 +38,6 @@ export default {
       fontFamily: {
         heading: ['Fraunces', 'Georgia', 'serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
-        // Bold geometric sans used only for the "Fortis Corporate Services"
-        // logo lockup text, matching the brand's original wordmark styling.
-        brand: ['Montserrat', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         content: '1280px',
