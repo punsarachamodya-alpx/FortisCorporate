@@ -1,6 +1,6 @@
 ---
 import { footerLegalLinks, primaryNav, serviceCategorySlugs, getFirmSettings } from '../lib/site';
-import LogoHorizontal from './LogoHorizontal.astro';
+import BrandLogo from './BrandLogo.astro';
 
 const { FIRM, links } = await getFirmSettings();
 const year = new Date().getFullYear();
@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
 <footer class="bg-navy text-navy-100">
   <div class="container-px mx-auto max-w-content py-16 grid gap-12 md:grid-cols-4">
     <div class="md:col-span-1">
-      <LogoHorizontal class="h-8 w-auto text-white" />
+      <BrandLogo variant="white" />
       <p class="mt-4 text-sm text-navy-200">
         {FIRM.footerTagline}
       </p>
