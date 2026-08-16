@@ -5,10 +5,10 @@
   "stats": [
     { "value": 30, "suffix": "+", "label": "Years combined professional experience" },
     { "value": 30, "suffix": "+", "label": "Companies incorporated" },
-    { "value": 6, "suffix": "", "label": "Integrated service areas" }
+    { "value": 7, "suffix": "", "label": "Integrated service areas" }
   ],
   "servicesEyebrow": "What we do",
-  "servicesHeading": "Six integrated service areas, one point of contact",
+  "servicesHeading": "Seven integrated service areas, one point of contact",
   "whyFortisEyebrow": "Why Fortis",
   "whyFortisHeading": "A different kind of corporate services partner",
   "whyFortis": [

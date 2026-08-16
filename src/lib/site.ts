@@ -43,6 +43,7 @@ export const serviceCategorySlugs = [
   { anchor: 'notarial-statutory', label: 'Notarial, Statutory & Legal Documentation' },
   { anchor: 'accounting-tax', label: 'Accounting, Tax, Customs & Financial Services' },
   { anchor: 'legal-advisory', label: 'Legal Advisory & Retainer Services' },
+  { anchor: 'website-development', label: 'Website Development & Company Emails' },
 ];
 
 // GA4 measurement ID — placeholder until the client supplies the real one.
