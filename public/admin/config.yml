@@ -20,7 +20,7 @@ public_folder: "/images/uploads"
 collections:
   - name: "services"
     label: "Services"
-    description: "The six service category pages shown on /services. Editing sub-service names/descriptions here updates the live site on next deploy."
+    description: "The seven service category pages shown on /services. Editing sub-service names/descriptions here updates the live site on next deploy."
     folder: "src/content/services"
     create: false
     delete: false

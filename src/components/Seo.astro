@@ -1,5 +1,5 @@
 ---
-import { SITE_URL, SITE_NAME, getFirmSettings } from '../lib/site';
+import { SITE_URL, SITE_NAME, getFirmSettings, serviceCategorySlugs } from '../lib/site';
 
 interface Props {
   title: string;
@@ -42,6 +42,14 @@ const jsonLd = {
     '@type': 'Country',
     name: 'Sri Lanka',
   },
+  makesOffer: serviceCategorySlugs.map((s) => ({
+    '@type': 'Offer',
+    itemOffered: {
+      '@type': 'Service',
+      name: s.label,
+      url: new URL(`/services#${s.anchor}`, SITE_URL).toString(),
+    },
+  })),
 };
 ---
 
