@@ -1,14 +1,14 @@
 {
-  "heroEyebrow": "Colombo, Sri Lanka",
+  "heroEyebrow": "",
   "heroHeadline": "Integrated Corporate & Legal Support for Businesses in Sri Lanka",
   "heroSubheadline": "Fortis Corporate Services provides corporate, legal, HR, accounting and compliance support to businesses and investors in Sri Lanka — under one roof.",
   "stats": [
-    { "value": 30, "suffix": "+", "label": "Years combined professional experience" },
+    { "value": 40, "suffix": "+", "label": "Years combined professional experience" },
     { "value": 30, "suffix": "+", "label": "Companies incorporated" },
-    { "value": 7, "suffix": "", "label": "Integrated service areas" }
+    { "value": 8, "suffix": "", "label": "Integrated service areas" }
   ],
   "servicesEyebrow": "What we do",
-  "servicesHeading": "Seven integrated service areas, one point of contact",
+  "servicesHeading": "Eight integrated service areas, one point of contact",
   "whyFortisEyebrow": "Why Fortis",
   "whyFortisHeading": "A different kind of corporate services partner",
   "whyFortis": [
@@ -35,7 +35,7 @@
     { "group": "Individuals & professionals", "line": "Notarial, statutory and legal documentation handled with care." },
     { "group": "Listed companies & regulated-sector businesses", "line": "Governance and compliance support for regulatory obligations." }
   ],
-  "coverageLine": "We serve clients across Sri Lanka, with a strong presence in Colombo and the Western Province, and support foreign investors and overseas businesses establishing, operating or investing in Sri Lanka. Many of our services can be delivered remotely.",
+  "coverageLine": "We serve clients across Sri Lanka and support foreign investors and overseas businesses establishing, operating or investing in Sri Lanka. Many of our services can be delivered remotely, wherever you're based.",
   "ctaHeading": "Ready to discuss your requirements?",
   "ctaBody": "Tell us what you need and we'll get back to you shortly."
 }

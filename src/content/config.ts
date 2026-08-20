@@ -4,9 +4,13 @@ const services = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    shortTitle: z.string(),
     anchor: z.string(),
     order: z.number(),
     summary: z.string(),
+    // Optional override for the homepage teaser card description, when it
+    // needs to differ from the Services page section description (summary).
+    homeSummary: z.string().optional(),
     subservices: z.array(
       z.object({
         name: z.string(),
@@ -31,18 +35,6 @@ const guides = defineCollection({
     description: z.string(),
     publishDate: z.date(),
     draft: z.boolean().default(false),
-  }),
-});
-
-const blog = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    publishDate: z.date(),
-    author: z.string().default('Fortis Corporate Services'),
-    tags: z.array(z.string()).default([]),
-    draft: z.boolean().default(true),
   }),
 });
 
@@ -190,7 +182,6 @@ export const collections = {
   services,
   faq,
   guides,
-  blog,
   complianceDeadlines,
   siteSettings,
   homeContent,

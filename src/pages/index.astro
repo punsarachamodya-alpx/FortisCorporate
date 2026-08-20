@@ -10,7 +10,7 @@ const home = (await getCollection('homeContent'))[0].data;
 
 <BaseLayout
   title="Fortis Corporate Services — Corporate, Legal & Compliance Support in Sri Lanka"
-  description="Fortis Corporate Services provides corporate, legal, HR, accounting and compliance support to businesses and investors in Sri Lanka — under one roof."
+  description="Fortis Corporate Services provides corporate, legal, HR, accounting, compliance, branding and marketing support to businesses and investors in Sri Lanka — under one roof."
   path="/"
 >
   <!-- Hero -->
@@ -26,7 +26,7 @@ const home = (await getCollection('homeContent'))[0].data;
       </svg>
     </div>
     <div class="relative container-px mx-auto max-w-content py-24 sm:py-32 lg:py-40">
-      <p class="eyebrow">{home.heroEyebrow}</p>
+      {home.heroEyebrow && <p class="eyebrow">{home.heroEyebrow}</p>}
       <h1 class="mt-4 max-w-3xl text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1]">
         {home.heroHeadline}
       </h1>
@@ -57,8 +57,8 @@ const home = (await getCollection('homeContent'))[0].data;
             class="group block rounded-sm border border-navy-100 bg-white p-7 hover:border-bronze hover:shadow-md transition-all duration-150 reveal"
             data-reveal-delay={(i % 4) * 90}
           >
-            <h3 class="text-xl leading-snug group-hover:text-bronze-600">{service.data.title}</h3>
-            <p class="mt-3 text-sm text-charcoal/80">{service.data.summary}</p>
+            <h3 class="text-xl leading-snug group-hover:text-bronze-600">{service.data.shortTitle}</h3>
+            <p class="mt-3 text-sm text-charcoal/80">{service.data.homeSummary ?? service.data.summary}</p>
             <span class="mt-4 inline-block text-sm font-semibold text-bronze">Learn more →</span>
           </a>
         ))}

@@ -1,5 +1,6 @@
 ---
 title: "Website Development & Company Emails"
+shortTitle: "Digital Presence"
 anchor: "website-development"
 order: 7
 summary: "Professional websites and company email setup, so your business has a credible online presence from day one."

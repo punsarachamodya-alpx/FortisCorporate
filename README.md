@@ -2,7 +2,7 @@
 
 Marketing website for Fortis Corporate Services (Pvt) Ltd, a Colombo-based corporate secretarial, legal and business services firm.
 
-Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), output as a fully static site (`astro build` → `dist/`) suitable for ordinary Hostinger shared/business hosting. Nearly all editorial content — services, FAQ, guides, blog, the compliance calendar, firm contact details, and every page's headline/body copy (Home, About, Services, Resources, FAQ, Contact, and the four legal pages) — lives in Astro content collections under `src/content/` as Markdown/JSON, so future edits are localized, low-risk, and don't require touching page templates. The contact and resource-download forms are handled by a small PHP + PHPMailer script in `server/`, since this is a static site with no other backend. All of that content can be edited without touching code via the Decap CMS panel at `/admin`.
+Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), output as a fully static site (`astro build` → `dist/`) suitable for ordinary Hostinger shared/business hosting. Nearly all editorial content — services, FAQ, guides, the compliance calendar, firm contact details, and every page's headline/body copy (Home, About, Services, Resources, FAQ, Contact, and the four legal pages) — lives in Astro content collections under `src/content/` as Markdown/JSON, so future edits are localized, low-risk, and don't require touching page templates. The contact and resource-download forms are handled by a small PHP + PHPMailer script in `server/`, since this is a static site with no other backend. All of that content can be edited without touching code via the Decap CMS panel at `/admin`.
 
 ## Local development
 
@@ -25,7 +25,7 @@ The PHP contact form cannot be tested against `npm run dev` (Astro's dev server 
 ```
 src/
   content/
-    services/ faq/ guides/ blog/ complianceDeadlines/ legalPages/   # Markdown/JSON content
+    services/ faq/ guides/ complianceDeadlines/ legalPages/   # Markdown/JSON content
     siteSettings/                                                  # Firm details & footer tagline
     homeContent/ aboutContent/ servicesContent/                     # Per-page copy (hero, stats, CTAs, ...)
     resourcesContent/ faqContent/ contactContent/
@@ -84,7 +84,7 @@ From `/admin`, an editor can change:
 - **Firm Details & Footer** — legal/trading name, registration no., address, phone, WhatsApp number, email, office hours, footer tagline.
 - **Every page's copy** — Home (hero, stats, "Why Fortis", "Who We Serve", CTAs), About (intro paragraphs, stats), Services/Resources/FAQ/Contact (hero text and CTAs).
 - **Services** — the six category pages and their sub-services.
-- **FAQ, Guides, Blog posts** — full content.
+- **FAQ, Guides** — full content.
 - **Compliance Calendar** — the indicative deadlines table (verify against current regulatory sources before changing).
 - **Legal Pages** — Privacy Policy, Terms of Use, Cookie Notice, Disclaimer (full body text).
 

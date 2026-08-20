@@ -20,16 +20,18 @@ public_folder: "/images/uploads"
 collections:
   - name: "services"
     label: "Services"
-    description: "The seven service category pages shown on /services. Editing sub-service names/descriptions here updates the live site on next deploy."
+    description: "The eight service category pages shown on /services. Editing sub-service names/descriptions here updates the live site on next deploy."
     folder: "src/content/services"
     create: false
     delete: false
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title (long — used as the Services page section heading)", name: "title", widget: "string" }
+      - { label: "Short Title (used in the footer, contact form dropdown and homepage card)", name: "shortTitle", widget: "string" }
       - { label: "Anchor (used in /services#anchor links — do not change without updating navigation)", name: "anchor", widget: "string" }
       - { label: "Display Order", name: "order", widget: "number" }
-      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Summary (Services page section description)", name: "summary", widget: "text" }
+      - { label: "Homepage Card Description (optional — falls back to Summary if left blank)", name: "homeSummary", widget: "text", required: false }
       - label: "Sub-services"
         name: "subservices"
         widget: "list"
@@ -59,21 +61,6 @@ collections:
       - { label: "Description (used in listing card & SEO)", name: "description", widget: "text" }
       - { label: "Publish Date", name: "publishDate", widget: "datetime" }
       - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  - name: "blog"
-    label: "Blog Posts"
-    description: "Blog posts shown on /blog. Set Draft to false to publish."
-    folder: "src/content/blog"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description (used in listing card & SEO)", name: "description", widget: "text" }
-      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
-      - { label: "Author", name: "author", widget: "string", default: "Fortis Corporate Services" }
-      - { label: "Tags", name: "tags", widget: "list", default: [] }
-      - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: true }
       - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "compliance_calendar"

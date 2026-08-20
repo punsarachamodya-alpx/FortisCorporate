@@ -1,5 +1,6 @@
 ---
 title: "HR & Employment Services"
+shortTitle: "HR & Employment"
 anchor: "hr-employment"
 order: 3
 summary: "Practical HR, payroll and employment-compliance support across the employee lifecycle."

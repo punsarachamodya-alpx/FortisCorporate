@@ -1,5 +1,6 @@
 ---
 title: "Commercial Contracts & Legal Documentation"
+shortTitle: "Commercial Contracts"
 anchor: "commercial-contracts"
 order: 2
 summary: "Drafting, reviewing and negotiating the agreements that govern how your business operates and trades."
