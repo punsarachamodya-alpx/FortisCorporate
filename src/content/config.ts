@@ -113,6 +113,15 @@ const aboutContent = defineCollection({
     statsEyebrow: z.string(),
     statsHeading: z.string(),
     stats: z.array(z.object({ value: z.string(), label: z.string() })),
+    teamEyebrow: z.string(),
+    teamHeading: z.string(),
+    team: z.array(
+      z.object({
+        name: z.string(),
+        title: z.string(),
+        photo: z.string(),
+      })
+    ),
     ctaHeading: z.string(),
     ctaBody: z.string(),
   }),
