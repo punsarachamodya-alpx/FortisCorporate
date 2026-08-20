@@ -25,7 +25,6 @@ export const primaryNav: NavLink[] = [
   { label: 'Services', href: '/services' },
   { label: 'Resources', href: '/resources' },
   { label: 'FAQ', href: '/faq' },
-  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -37,13 +36,14 @@ export const footerLegalLinks: NavLink[] = [
 ];
 
 export const serviceCategorySlugs = [
-  { anchor: 'corporate-secretarial', label: 'Corporate & Company Secretarial Services' },
-  { anchor: 'commercial-contracts', label: 'Commercial Contracts & Legal Documentation' },
-  { anchor: 'hr-employment', label: 'HR & Employment Services' },
-  { anchor: 'notarial-statutory', label: 'Notarial, Statutory & Legal Documentation' },
-  { anchor: 'accounting-tax', label: 'Accounting, Tax, Customs & Financial Services' },
-  { anchor: 'legal-advisory', label: 'Legal Advisory & Retainer Services' },
-  { anchor: 'website-development', label: 'Website Development & Company Emails' },
+  { anchor: 'corporate-secretarial', label: 'Corporate Secretarial' },
+  { anchor: 'commercial-contracts', label: 'Commercial Contracts' },
+  { anchor: 'hr-employment', label: 'HR & Employment' },
+  { anchor: 'notarial-statutory', label: 'Notarial & Statutory' },
+  { anchor: 'accounting-tax', label: 'Accounting & Tax' },
+  { anchor: 'legal-advisory', label: 'Legal Advisory' },
+  { anchor: 'website-development', label: 'Digital Presence' },
+  { anchor: 'branding-marketing', label: 'Branding & Marketing' },
 ];
 
 // GA4 measurement ID — placeholder until the client supplies the real one.

@@ -1,5 +1,6 @@
 ---
 title: "Corporate & Company Secretarial Services"
+shortTitle: "Corporate Secretarial"
 anchor: "corporate-secretarial"
 order: 1
 summary: "End-to-end company formation and ongoing secretarial support, from incorporation through to restructuring or closure."
@@ -18,10 +19,6 @@ subservices:
     description: "Alterations to Articles of Association, company name changes, registered office changes and other amendments to registered particulars."
   - name: "Corporate Restructuring, Amalgamation & Business Reorganisation"
     description: "Corporate and legal support for mergers, amalgamations, restructurings and reorganisations, including documentation and corporate approvals."
-  - name: "Voluntary Liquidation & Striking Off"
-    description: "Assisting companies that wish to formally close or discontinue operations through the appropriate process."
   - name: "Corporate Governance & Compliance Advisory"
     description: "Practical advice on corporate governance, statutory compliance, internal procedures and ongoing legal obligations."
-  - name: "Listed Company & Stock Exchange Compliance"
-    description: "Corporate and compliance support to listed entities in relation to applicable corporate and regulatory obligations."
 ---

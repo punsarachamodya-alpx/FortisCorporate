@@ -1,5 +1,6 @@
 ---
 title: "Legal Advisory & Retainer Services"
+shortTitle: "Legal Advisory"
 anchor: "legal-advisory"
 order: 6
 summary: "Ongoing legal support, on a project basis or through a monthly retainer."

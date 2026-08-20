@@ -1,5 +1,6 @@
 ---
-title: "Notarial, Statutory & Legal Documentation"
+title: "Notarial & Statutory Services"
+shortTitle: "Notarial & Statutory"
 anchor: "notarial-statutory"
 order: 4
 summary: "Notarial execution and formal correspondence for personal, commercial and corporate matters."
