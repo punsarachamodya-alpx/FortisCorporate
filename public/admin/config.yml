@@ -158,6 +158,15 @@ collections:
             fields:
               - { label: "Value (e.g. 30+)", name: "value", widget: "string" }
               - { label: "Label", name: "label", widget: "string" }
+          - { label: "Team — Eyebrow", name: "teamEyebrow", widget: "string" }
+          - { label: "Team — Heading", name: "teamHeading", widget: "string" }
+          - label: "Team Members"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image", media_library: { config: { multiple: false } } }
           - { label: "Bottom CTA — Heading", name: "ctaHeading", widget: "string" }
           - { label: "Bottom CTA — Body", name: "ctaBody", widget: "text" }
 

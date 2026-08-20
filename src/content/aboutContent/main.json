@@ -14,6 +14,14 @@
     { "value": "30+", "label": "Companies incorporated for clients to date" },
     { "value": "8", "label": "Integrated service areas under one roof" }
   ],
+  "teamEyebrow": "Our team",
+  "teamHeading": "Meet the people behind Fortis",
+  "team": [
+    { "name": "Nisali Ranaweera", "title": "Head of Finance and Operations", "photo": "/team/nisali-ranaweera.jpg" },
+    { "name": "Premasiri Abeysuriya", "title": "Head of Legal & Dispute Resolution", "photo": "/team/premasiri-abeysuriya.jpg" },
+    { "name": "Sachintha Abeysuriya", "title": "Head of Real Estate & Commercial Practice", "photo": "/team/sachintha-abeysuriya.jpg" },
+    { "name": "Kavindu Abeysuriya", "title": "Head of Commercial & Corporate Affairs", "photo": "/team/kavindu-abeysuriya.jpg" }
+  ],
   "ctaHeading": "Want to know more about how we work?",
   "ctaBody": "Get in touch and we'll be glad to talk through your requirements."
 }

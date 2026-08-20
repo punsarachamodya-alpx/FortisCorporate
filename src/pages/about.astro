@@ -26,9 +26,30 @@ const about = (await getCollection('aboutContent'))[0].data;
     </div>
   </section>
 
-  <!-- Team section: add when bios are provided -->
-
   <section class="section bg-offwhite">
+    <div class="container-px mx-auto max-w-content">
+      <p class="eyebrow">{about.teamEyebrow}</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">{about.teamHeading}</h2>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        {about.team.map((member, i) => (
+          <div class="text-center reveal" data-reveal-delay={(i % 4) * 90}>
+            <img
+              src={member.photo}
+              alt={member.name}
+              width="200"
+              height="200"
+              loading="lazy"
+              class="mx-auto h-32 w-32 sm:h-36 sm:w-36 rounded-full object-cover border border-navy-100"
+            />
+            <p class="mt-4 text-base font-semibold text-navy">{member.name}</p>
+            <p class="mt-1 text-sm text-charcoal/70">{member.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
     <div class="container-px mx-auto max-w-content">
       <p class="eyebrow">{about.statsEyebrow}</p>
       <h2 class="mt-3 text-3xl sm:text-4xl max-w-2xl">{about.statsHeading}</h2>
