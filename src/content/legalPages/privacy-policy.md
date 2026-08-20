@@ -38,7 +38,7 @@ We retain enquiry and resource-download data for as long as reasonably necessary
 
 ## Our current data-handling practices
 
-Fortis Corporate Services is a newly established firm and does not, at present, have a formal internal data-handling policy in place. We are committed to handling personal data reasonably, securely and in line with the principles of the PDPA, and we intend to adopt a formal internal data protection policy as our operations develop. We will update this notice accordingly once that policy is in place.
+Fortis Corporate Services does not, at present, have a formal internal data-handling policy in place. We are committed to handling personal data reasonably, securely and in line with the principles of the PDPA, and we intend to adopt a formal internal data protection policy as our operations develop. We will update this notice accordingly once that policy is in place.
 
 ## Your rights
 
